@@ -401,31 +401,25 @@ module.exports = function (cfg, configName) {
 
       // dedupe & minify CSS (only if extracted)
       if (cfg.build.minify) {
-        const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-
-        const cssProcessorOptions = {
-          parser: require('postcss-safe-parser'),
-          autoprefixer: { disable: true }
-        }
-        if (cfg.build.sourceMap) {
-          cssProcessorOptions.map = { inline: false }
-        }
+        const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+ 
+        // TODO: use 'postcss-safe-parser'
+        // See: https://github.com/webpack-contrib/css-minimizer-webpack-plugin/issues/54
 
         // We are using this plugin so that possible
         // duplicated CSS = require(different components) can be deduped.
-        chain.plugin('optimize-css')
-          .use(OptimizeCSSPlugin, [{
-            canPrint: false,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions,
-            cssProcessorPluginOptions: {
+        chain.optimization
+          .minimizer('css')
+          .use(CssMinimizerPlugin, [{
+            sourceMap: cfg.build.sourceMap,
+            minimizerOptions: {
               preset: ['default', {
-                mergeLonghand: false,
                 convertValues: false,
                 cssDeclarationSorter: false,
+                mergeLonghand: false,
                 reduceTransforms: false
               }]
-            }
+            },
           }])
       }
     }
