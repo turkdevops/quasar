@@ -17,8 +17,8 @@ Under the covers, it uses the [Intersection Observer API](https://developer.mozi
 Not all browsers support the Intersection Observer API. Most [modern browsers](https://caniuse.com/#search=intersection) do, but other browsers, **like IE 11**, do not. If you need to support older browsers, you can install and import (into a boot file) the official W3C [polyfill](https://github.com/w3c/IntersectionObserver).
 :::
 
-## Installation
-<doc-installation components="QIntersection" />
+## QIntersection API
+<doc-api file="QIntersection" />
 
 ## Usage
 
@@ -33,7 +33,7 @@ If using the `transition` prop, it is required that the content be wrapped in on
 :::
 
 ::: tip
-There are edge cases where the default viewport won't work. For instance, when your code is hosted in an iframe (like Codepen). This is where you need to use the `root` property. It allows you define an alternative to the viewport as your root (through its DOM element). It is important to keep in mind that root needs to be an ancestor of the observed element.
+There are edge cases where the default viewport won't work. For instance, when your code is hosted in an iframe (like Codepen). This is where you need to use the `root` property. It allows you to define an alternative to the viewport as your root (through its DOM element). It is important to keep in mind that root needs to be an ancestor of the observed element.
 :::
 
 ### Basic
@@ -57,6 +57,3 @@ Triggering only once means, however, that you lose the benefit of freeing up the
 The example below uses the `root` property and therefore can be seen in a Codepen (which hosts in an iframe).
 
 <doc-example title="Root viewport" file="QIntersection/Root" scrollable />
-
-## QIntersection API
-<doc-api file="QIntersection" />

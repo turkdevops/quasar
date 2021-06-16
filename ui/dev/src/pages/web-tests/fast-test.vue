@@ -13,6 +13,8 @@
 
 <script>
 /* eslint-disable */
+const profilePic = 'https://cdn.quasar.dev/img/avatar.png'
+const placeholderPic = 'https://cdn.quasar.dev/img/avatar5.jpg'
 
 export default {
   data () {
