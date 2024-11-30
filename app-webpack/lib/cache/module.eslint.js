@@ -1,10 +1,16 @@
 const { existsSync } = require('node:fs')
-
 const { getPackage } = require('../utils/get-package.js')
+
+const flatConfigFileRE = /^eslint\.config\./
 
 module.exports.createInstance = function createInstance ({ appPaths }) {
   const eslintConfigFile = [
+    // flat configs (ESLint >= 9)
     'eslint.config.js',
+    'eslint.config.mjs',
+    'eslint.config.cjs',
+
+    // legacy configs (ESLint <= 8)
     '.eslintrc.cjs',
     '.eslintrc.js',
     '.eslintrc.yaml',
@@ -18,7 +24,7 @@ module.exports.createInstance = function createInstance ({ appPaths }) {
   }
 
   if (acc.hasEslint === true) {
-    acc.configType = eslintConfigFile === 'eslint.config.js' ? 'flat' : 'eslintrc'
+    acc.configType = flatConfigFileRE.test(eslintConfigFile) ? 'flat' : 'eslintrc'
 
     const linter = getPackage('eslint', appPaths.appDir)
 
