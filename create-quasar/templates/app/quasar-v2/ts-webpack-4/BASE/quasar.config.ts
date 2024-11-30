@@ -1,20 +1,14 @@
-/* eslint-env node */
-
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
-<% if (preset.lint) { %>
+<% if (preset.eslint) { %>
 /* eslint-disable @typescript-eslint/no-var-requires */
-<% if (lintConfig === 'airbnb') { %>
-/* eslint func-names: 0 */
-/* eslint global-require: 0 */
-<% } %>
 <% } %>
 import { defineConfig } from '#q-app/wrappers';
 
 export default defineConfig((/* ctx */) => {
   return {
-    <% if (preset.lint) { %>eslint: {
+    <% if (preset.eslint) { %>eslint: {
       // fix: true,
       // include: [],
       // exclude: [],

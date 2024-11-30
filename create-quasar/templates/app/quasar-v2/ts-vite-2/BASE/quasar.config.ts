@@ -1,11 +1,6 @@
-/* eslint-env node */
-
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-<% if (preset.lint && lintConfig === 'airbnb') { %>/* eslint func-names: 0 */
-/* eslint global-require: 0 */
-<% } %>
 import { defineConfig } from '#q-app/wrappers';
 <% if (preset.i18n) { %>import { fileURLToPath } from 'node:url';<% } %>
 
@@ -73,7 +68,7 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      <% if (preset.i18n || preset.lint) { %>vitePlugins: [<% if (preset.i18n) { %>
+      <% if (preset.i18n || preset.eslint) { %>vitePlugins: [<% if (preset.i18n) { %>
         ['@intlify/unplugin-vue-i18n/vite', {
           // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
           // compositionOnly: false,
@@ -86,11 +81,12 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
 
           // you need to set i18n resource including paths !
           include: [ fileURLToPath(new URL('./src/i18n', import.meta.url)) ],
-        }]<% } %><% if (preset.lint) { %><% if (preset.i18n) { %>,<% } %>
+        }]<% } %><% if (preset.eslint) { %><% if (preset.i18n) { %>,<% } %>
         ['vite-plugin-checker', {
           vueTsc: true,
           eslint: {
-            lintCommand: 'eslint "./**/*.{js,ts,mjs,cjs,vue}"'
+            lintCommand: 'eslint',
+            useFlatConfig: true
           }
         }, { server: false }]<% } %>
       ]<% } else { %>
