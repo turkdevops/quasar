@@ -40,6 +40,11 @@
       "types": "./types/bex/bex-bridge.d.ts",
       "import": "./exports/bex/private/bex-bridge.mjs"
     },
+    "./eslint": {
+      "require": "./exports/eslint/eslint.js",
+      "node": "./exports/eslint/eslint.js",
+      "import": "./exports/eslint/eslint.mjs"
+    },
     "./lib/testing.js": {
       "require": "./exports/testing/testing.js",
       "node": "./exports/testing/testing.js"
