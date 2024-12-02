@@ -75,8 +75,8 @@ async function renderFile ({ sourcePath, targetPath, rawCopy, scope, overwritePr
 
 async function renderFolders ({ source, rawCopy, scope }, ctx) {
   let overwrite
-  const fglob = require('fast-glob')
-  const files = fglob.sync([ '**/*' ], { cwd: source })
+  const { globSync } = require('tinyglobby')
+  const files = globSync([ '**/*' ], { cwd: source })
 
   for (const rawPath of files) {
     const targetRelativePath = rawPath.split('/').map(name => {

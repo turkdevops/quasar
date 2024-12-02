@@ -1,6 +1,6 @@
 const fs = require('node:fs')
 const { basename, dirname, join } = require('node:path')
-const fglob = require('fast-glob')
+const { globSync } = require('tinyglobby')
 
 const { log, warn } = require('../../utils/logger.js')
 const { ensureConsistency } = require('./ensure-consistency.js')
@@ -300,7 +300,7 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
     const { appPaths } = this.#ctx
 
     const capacitorSrcPath = appPaths.resolve.capacitor('android/app/src/main/java')
-    let mainActivityPath = fglob.sync('**/MainActivity.java', { cwd: capacitorSrcPath, absolute: true })
+    let mainActivityPath = globSync('**/MainActivity.java', { cwd: capacitorSrcPath, absolute: true })
 
     if (mainActivityPath.length > 0) {
       if (mainActivityPath.length > 1) {

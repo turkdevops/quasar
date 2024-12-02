@@ -1,7 +1,7 @@
 const fs = require('node:fs')
 const fse = require('fs-extra')
 const compileTemplate = require('lodash/template.js')
-const fglob = require('fast-glob')
+const { globSync } = require('tinyglobby')
 
 const { log, warn } = require('../../utils/logger.js')
 const { spawnSync } = require('../../utils/spawn.js')
@@ -59,7 +59,7 @@ module.exports.addMode = async function addMode ({
     nodePackager: nodePackager.name
   }
 
-  fglob.sync([ '**/*' ], {
+  globSync([ '**/*' ], {
     cwd: appPaths.resolve.cli('templates/capacitor')
   }).forEach(filePath => {
     const dest = appPaths.resolve.capacitor(filePath)
