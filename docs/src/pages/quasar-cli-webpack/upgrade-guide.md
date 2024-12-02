@@ -151,7 +151,7 @@ Some of the work below has already been backported to the old @quasar/app-webpac
 ### Beginning of the upgrade process
 
 ::: tip Recommendation
-If you are unsure that you won't skip by mistake any of the recommended changes, you can scaffold a new project folder with the @quasar/app-webpack v4 beta at any time and then easily start porting your app from there. The bulk of the changes refer to the different project folder config files and mostly NOT to your /src files.
+If you are unsure that you won't skip by mistake any of the recommended changes, you can scaffold a new project folder with the @quasar/app-webpack v4 at any time and then easily start porting your app from there. The bulk of the changes refer to the different project folder config files and mostly NOT to your /src files.
 <br><br>
 ```tabs
 <<| bash Yarn |>>
@@ -165,7 +165,7 @@ $ pnpm create quasar
 $ bun create quasar
 ```
 <br>
-When asked to "Pick Quasar App CLI variant", answer with: "Quasar App CLI with Webpack (BETA | next major version - v4)".
+When asked to "Pick Quasar App CLI variant", answer with: "Quasar App CLI with Webpack (v4)".
 :::
 
 Preparations:
@@ -184,13 +184,24 @@ Preparations:
   Then yarn/npm/pnpm/bun install.
   <br><br>
 
+* Manually install `autoprefixer`. It is no longer supplied out of the box.
+
+* If you've installed the `dotenv` package and are using it in your quasar.config file then uninstall it and use our CLIs native [dotenv support](#the-env-dotfiles-support).
+
+  ```diff /quasar.config file
+  - build: {
+  -  env: require('dotenv').config().parsed
+  - }
+  ```
+  <br>
+
 * Convert your `/quasar.config.js` file to the ESM format (which is recommended, otherwise rename the file extension to `.cjs` and use CommonJs format). Also notice the wrappers import change, more on that later.
   ```diff /quasar.config.js file
   - const { configure } = require('quasar/wrappers')
   + import { defineConfig } from '#q-app/wrappers'
 
-  - module.export = configure((/* ctx */) => {
-  + export default defineConfig((/* ctx */) => {
+  - module.export = configure((ctx) => {
+  + export default defineConfig((ctx) => {
       return {
         // ...
       }
@@ -209,7 +220,11 @@ Preparations:
   ```
   <br>
 
-  Convert `postcss.config.js` to ESM format:
+  ::: warning
+  After setting type=module you might encounter "File not found" errors when using imports without specifying the file extension. Example: `Could not find "./routes"`. Should be `import routes from './routes.js'`. You will need to add the extension for all your imports.
+  :::
+
+  Convert `postcss.config.cjs` to ESM format and rename to `.js` extension:
 
   ```js /postcss.config.js
   // https://github.com/michael-ciniawsky/postcss-load-config
@@ -224,7 +239,7 @@ Preparations:
   ```
   <br>
 
-  Convert `babel.config.cjs` to ESM format:
+  Convert `babel.config.cjs` to ESM format and rename to `.js` extension:
 
   ```js /babel.config.js
   export default api => {
@@ -317,14 +332,6 @@ Preparations:
   ```
 
   <br>
-
-* If you've installed the `dotenv` package and are using it in your quasar.config file then uninstall it and use our CLIs native [dotenv support](#the-env-dotfiles-support).
-
-  ```diff /quasar.config file
-  - build: {
-  -  env: require('dotenv').config().parsed
-  - }
-  ```
 
 * The types feature flag files will now be auto-generated in the `.quasar` folder. So, you must delete them:
 

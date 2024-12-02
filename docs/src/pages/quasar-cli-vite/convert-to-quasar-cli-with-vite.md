@@ -10,8 +10,6 @@ This page will guide you on how to convert a Quasar CLI with Webpack (`@quasar/a
 A Quasar CLI with Webpack project relies on `/package.json > browserslist` to specify which browsers you are targeting. That property no longer has any meaning. Projects managed by Quasar CLI with Vite work completely different and you might want to check the [Browser Compatibility](/quasar-cli-vite/browser-compatibility) page.
 
 ```diff /package.json
-+ "type": "module", // very important!
-
 dependencies: {
 - core-js
 },
@@ -19,6 +17,9 @@ dependencies: {
 devDependencies: {
 - "@quasar/app-webpack": "^4.0.0"
 + "@quasar/app-vite": "^2.0.0"
+
++ "postcss": "^8.4.14"
++ "postcss-rtlcss": "^5.4.0" // if using RTL support
 
 - eslint-webpack-plugin
 - ts-loader
@@ -32,39 +33,15 @@ Remember to yarn/npm/pnpm/bun install.
 
 ### Step 2: Various files
 
-* Delete `/babel.config.cjs`. It will serve no purpose now.
-* Edit `/.eslintignore` and remove the entry for `babel.config.cjs`
-* Rename `/postcss.config.cjs` to `/postcss.config.js` and port it to the ESM format:
+* Delete `/babel.config.js`. It will serve no purpose now.
+* If you are using using the RTL support, then edit `/postcss.config.js`. You will need to manually install `postcss-rtlcss` and make the following edit:
 
-  ```js /postcss.config.js
-  /* eslint-disable */
-  // https://github.com/michael-ciniawsky/postcss-load-config
-
-  import autoprefixer from 'autoprefixer'
-  // import rtlcss from 'postcss-rtlcss'
+  ```diff /postcss.config.js
+  + import rtlcss from 'postcss-rtlcss'
 
   export default {
     plugins: [
-      // https://github.com/postcss/autoprefixer
-      autoprefixer({
-        overrideBrowserslist: [
-          'last 4 Chrome versions',
-          'last 4 Firefox versions',
-          'last 4 Edge versions',
-          'last 4 Safari versions',
-          'last 4 Android versions',
-          'last 4 ChromeAndroid versions',
-          'last 4 FirefoxAndroid versions',
-          'last 4 iOS versions'
-        ]
-      }),
-
-      // https://github.com/elchininet/postcss-rtlcss
-      // If you want to support RTL css, then
-      // 1. yarn/pnpm/bun/npm install postcss-rtlcss
-      // 2. optionally set quasar.config.js > framework > lang to an RTL language
-      // 3. uncomment the following line (and its import statement above):
-      // rtlcss()
+  +   rtlcss()
     ]
   }
   ```
@@ -187,7 +164,11 @@ export const renderPreloadTag = defineSsrRenderPreloadTag((file/* , { ssrContext
 }
 ```
 
-### Step 8: And we're done
+### Step 8: Linting
+
+If you are using ESLint, you might want to check the requirements for it [here](/quasar-cli-vite/linter).
+
+### Step 9: And we're done
 
 ```bash
 $ quasar prepare

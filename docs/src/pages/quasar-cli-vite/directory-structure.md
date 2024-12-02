@@ -89,10 +89,7 @@ scope:
     - l: ".editorconfig"
       e: EditorConfig file
       url: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-    - l: ".eslintignore"
-      e: ESLint ignore paths
-      url: https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file
-    - l: ".eslintrc.cjs"
+    - l: "eslint.config.js"
       e: ESLint config
       url: https://eslint.org/docs/latest/user-guide/configuring/configuration-files#using-configuration-files
     - l: postcss.config.js

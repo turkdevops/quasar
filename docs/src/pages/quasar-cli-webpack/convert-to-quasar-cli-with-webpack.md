@@ -8,8 +8,6 @@ This page will guide you on how to convert a Quasar CLI with Vite (`@quasar/app-
 ### Step 1: Edit package.json
 
 ```diff /package.json
-- "type": "module", // remove; very important!
-
 dependencies: {
 + "core-js": "^3.6.5",
 },
@@ -20,6 +18,9 @@ devDependencies: {
 
 + "eslint-webpack-plugin": "^4.0.1",
 + "ts-loader": "^9.4.2", // if using TS
+
+- "postcss"
+- "postcss-rtlcss"
 
 // if you have PWA mode:
 + "workbox-webpack-plugin": "^7.0.0"
@@ -51,12 +52,10 @@ A Quasar CLI with Webpack project relies on `/package.json > browserslist` to sp
 
 ### Step 2: Various files
 
-* Create `/babel.config.cjs`:
+* Create `/babel.config.js`:
 
   ```js
-  /* eslint-disable */
-
-  module.exports = api => {
+  export default api => {
     return {
       presets: [
         [
@@ -71,20 +70,20 @@ A Quasar CLI with Webpack project relies on `/package.json > browserslist` to sp
   ```
   <br>
 
-* Edit `/.eslintignore` and add an the entry for `babel.config.cjs`
-* Rename `/postcss.config.js` to `/postcss.config.cjs` (notice the extension change) and port it to the CJS format:
+* If you are using the RTL support, then edit `/postcss.config.js`. You will need to remove the `postcss-rtlcss` import and usage. This is handled automatically by Quasar CLI now:
 
-  ```js /postcss.config.cjs
-  /* eslint-disable */
-  // https://github.com/michael-ciniawsky/postcss-load-config
+  ```diff /postcss.config.js
+  - import rtlcss from 'postcss-rtlcss'
 
-  module.exports = {
+  export default {
     plugins: [
-      // to edit target browsers: use "browserslist" field in package.json
-      require('autoprefixer')
+  -   rtlcss()
     ]
   }
   ```
+  <br>
+
+  Also, uninstall the `postcss-rtlcss` package.
 
 ### Step 3: Copy folders from original folder
 
@@ -192,7 +191,11 @@ export const renderPreloadTag = defineSsrRenderPreloadTag((file/* , { ssrContext
 }
 ```
 
-### Step 7: And we're done
+### Step 7: Linting
+
+If you are using ESLint, you might want to check the requirements for it [here](/quasar-cli-webpack/linter).
+
+### Step 8: And we're done
 
 ```bash
 $ quasar prepare

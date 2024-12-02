@@ -77,7 +77,7 @@ Some of the work below has already been backported to the old @quasar/app-vite v
 ### Beginning of the upgrade process
 
 ::: tip Recommendation
-If you are unsure that you won't skip by mistake any of the recommended changes, you can scaffold a new project folder with the @quasar/app-vite v2 beta at any time and then easily start porting your app from there. The bulk of the changes refer to the different project folder config files and mostly NOT to your /src files.
+If you are unsure that you won't skip by mistake any of the recommended changes, you can scaffold a new project folder with the @quasar/app-vite v2 at any time and then easily start porting your app from there. The bulk of the changes refer to the different project folder config files and mostly NOT to your /src files.
 <br><br>
 ```tabs
 <<| bash Yarn |>>
@@ -91,7 +91,7 @@ $ pnpm create quasar
 $ bun create quasar
 ```
 <br>
-When asked to "Pick Quasar App CLI variant", answer with: "Quasar App CLI with Vite 6 (BETA | next major version - v2)".
+When asked to "Pick Quasar App CLI variant", answer with: "Quasar App CLI with Vite 6 (v2)".
 :::
 
 Preparations:
@@ -115,8 +115,8 @@ Preparations:
   - const { configure } = require('quasar/wrappers')
   + import { defineConfig } from '#q-app/wrappers'
 
-  - module.export = configure((/* ctx */) => {
-  + export default defineConfig((/* ctx */) => {
+  - module.export = configure((ctx) => {
+  + export default defineConfig((ctx) => {
       return {
         // ...
       }
