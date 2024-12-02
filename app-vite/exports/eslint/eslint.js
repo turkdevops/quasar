@@ -8,8 +8,10 @@ const ignoreList = [
 
 export default {
   configs: {
-    recommended: {
+    // using Array so we can add more stuff later if needed
+    // without breaking changes
+    recommended: [{
       ignores: ignoreList
-    }
+    }]
   }
 }
