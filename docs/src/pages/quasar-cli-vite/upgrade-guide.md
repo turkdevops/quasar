@@ -168,10 +168,6 @@ Preparations:
   ```
   <br>
 
-  Rename `.eslintrc.js` to `.eslintrc.cjs`, if it doesn't already have the `.cjs` extension.
-
-  <br>
-
 * You might want to add the following to your `/.gitignore` file. The `/quasar.config.*.temporary.compiled*` entry refers to files that are left for inspection purposes when something fails with your `/quasar.config` file (and can be removed by the `quasar clean` command):
 
   ```bash [highlight=8,11] /.gitignore
@@ -209,32 +205,9 @@ Preparations:
   *.njsproj
   *.sln
   ```
-
   <br>
 
-  * If you have linting, please review your `/.eslintignore` file as well:
-
-  ```bash [highlight=6-7] /.eslintignore
-  /dist
-  /src-capacitor
-  /src-cordova
-  /.quasar
-  /node_modules
-  .eslintrc.cjs
-  /quasar.config.*.temporary.compiled*
-  ```
-  <br>
-
-  Update `/quasar.config file > bex` section to satisfy the types, regardless if you use BEX or not. If you are using BEX, please see the [BEX section below](#bex-mode-changes) for more details.
-
-  ```diff /quasar.config file
-  bex: {
-  - contentScripts: []
-  + extraScripts: []
-  }
-  ```
-
-  <br>
+* Make sure to update your `/quasar.config` file with the newest specs in order to satisfy the types. Check all following sections.
 
 * If you've installed the `dotenv` package and are using it in your quasar.config file then uninstall it and use our CLIs native [dotenv support](#the-env-dotfiles-support).
 
@@ -353,7 +326,7 @@ Preparations:
 
   If you are using ESLint, we recommend enabling `@typescript-eslint/consistent-type-imports` rules in your ESLint configuration. If you don't have linting set up, we recommend using `verbatimModuleSyntax` in your `tsconfig.json` file as an alternative (_unlike ESLint rules, it's not auto-fixable_). These changes will help you unify your imports regarding regular and type-only imports. Please read [typescript-eslint Blog - Consistent Type Imports and Exports: Why and How](https://typescript-eslint.io/blog/consistent-type-imports-and-exports-why-and-how) for more information about this and how to set it up. Here is an example:
 
-  ```js /.eslintrc.cjs
+  ```js /eslint.config.js
   rules: {
     // ...
     '@typescript-eslint/consistent-type-imports': [
@@ -457,86 +430,7 @@ Preparations:
 
 ### Linting (TS or JS)
 
-We dropped support for our internal linting (quasar.config file > eslint) in favor of the [vite-plugin-checker](https://vite-plugin-checker.netlify.app/) package. We will detail below the changes that you need to make based on if you use TS or not.
-
-#### TypeScript projects linting
-
-```tabs
-<<| bash Yarn |>>
-$ yarn add --dev vite-plugin-checker vue-tsc@2 typescript
-<<| bash NPM |>>
-$ npm install --save-dev vite-plugin-checker vue-tsc@2 typescript
-<<| bash PNPM |>>
-$ pnpm add -D vite-plugin-checker vue-tsc@2 typescript
-<<| bash Bun |>>
-$ bun add --dev vite-plugin-checker vue-tsc@2 typescript
-```
-
-```bash [highlight=6,7] /.eslintignore
-/dist
-/src-capacitor
-/src-cordova
-/.quasar
-/node_modules
-.eslintrc.cjs
-/quasar.config.*.temporary.compiled*
-```
-
-```diff /quasar.config file
-- eslint: {
--   // ...
-- },
-
-  build: {
-    vitePlugins: [
-+    ['vite-plugin-checker', {
-+       vueTsc: true,
-+       eslint: {
-+         lintCommand: 'eslint "./**/*.{js,ts,mjs,cjs,vue}"'
-+       }
-+     }, { server: false }]
-    ]
-  }
-```
-
-#### JavaScript projects linting
-
-```tabs
-<<| bash Yarn |>>
-$ yarn add --dev vite-plugin-checker
-<<| bash NPM |>>
-$ npm install --save-dev vite-plugin-checker
-<<| bash PNPM |>>
-$ pnpm add -D vite-plugin-checker
-<<| bash Bun |>>
-$ bun add --dev vite-plugin-checker
-```
-
-```bash [highlight=6,7] /.eslintignore
-/dist
-/src-capacitor
-/src-cordova
-/.quasar
-/node_modules
-.eslintrc.cjs
-/quasar.config.*.temporary.compiled*
-```
-
-```diff /quasar.config file
-- eslint: {
--   // ...
-- },
-
-  build: {
-    vitePlugins: [
-+    ['vite-plugin-checker', {
-+       eslint: {
-+         lintCommand: 'eslint "./**/*.{js,mjs,cjs,vue}"'
-+       }
-+     }, { server: false }]
-    ]
-  }
-```
+If you have linting, please review your setup by going to [Linter page](/quasar-cli-vite/linter). You will need to uninstall and install new dependencies.
 
 ### Capacitor / Cordova modes changes
 

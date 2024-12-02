@@ -195,6 +195,10 @@ Preparations:
   ```
   <br>
 
+* Make sure to update your `/quasar.config` file with the newest specs in order to satisfy the types. Check all following sections.
+
+* If you have linting, please review your setup by going to [Linter page](/quasar-cli-webpack/linter). You will need to uninstall and install new dependencies.
+
 * Convert your `/quasar.config.js` file to the ESM format (which is recommended, otherwise rename the file extension to `.cjs` and use CommonJs format). Also notice the wrappers import change, more on that later.
   ```diff /quasar.config.js file
   - const { configure } = require('quasar/wrappers')
@@ -265,6 +269,7 @@ Preparations:
   + <!-- quasar:entry-point -->
   </body>
   ```
+
   <br>
 
 * You might want to add the following to your `/.gitignore` file. These kind of files are left for inspection purposes when something fails with your `/quasar.config` file (and can be removed by the `quasar clean` command):
@@ -303,32 +308,6 @@ Preparations:
   *.ntvs*
   *.njsproj
   *.sln
-  ```
-
-  <br>
-
-* If you have linting, please review your `/.eslintignore` file as well:
-
-  ```bash [highlight=6-8] /.eslintignore
-  /dist
-  /src-capacitor
-  /src-cordova
-  /.quasar
-  /node_modules
-  .eslintrc.cjs
-  babel.config.cjs
-  /quasar.config.*.temporary.compiled*
-  ```
-
-  <br>
-
-  Update `/quasar.config file > bex` section to satisfy the types, regardless if you use BEX or not. If you are using BEX, please see the [BEX section below](#bex-mode-changes) for more details.
-
-  ```diff /quasar.config file
-  bex: {
-  - contentScripts: []
-  + extraScripts: []
-  }
   ```
 
   <br>
@@ -442,7 +421,7 @@ Preparations:
 
   If you are using ESLint, we recommend enabling `@typescript-eslint/consistent-type-imports` rules in your ESLint configuration. If you don't have linting set up, we recommend using `verbatimModuleSyntax` in your `tsconfig.json` file as an alternative (_unlike ESLint rules, it's not auto-fixable_). These changes will help you unify your imports regarding regular and type-only imports. Please read [typescript-eslint Blog - Consistent Type Imports and Exports: Why and How](https://typescript-eslint.io/blog/consistent-type-imports-and-exports-why-and-how) for more information about this and how to set it up. Here is an example:
 
-  ```js /.eslintrc.cjs
+  ```js /eslint.config.js
   rules: {
     // ...
     '@typescript-eslint/consistent-type-imports': [
