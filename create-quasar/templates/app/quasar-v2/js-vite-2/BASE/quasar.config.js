@@ -1,8 +1,8 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-import { defineConfig } from '#q-app/wrappers'
-<% if (preset.i18n) { %>import { fileURLToPath } from 'node:url';<% } %>
+import { defineConfig } from '#q-app/wrappers'<% if (preset.i18n) { %>
+import { fileURLToPath } from 'node:url'<% } %>
 
 export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<% } %>) => {
   return {
@@ -12,9 +12,9 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: [
-      <% if (preset.i18n) { %>'i18n',<% } %>
-      <% if (preset.axios) { %>'axios',<% } %>
+    boot: [<% if (preset.i18n) { %>
+      'i18n'<% } %><% if (preset.axios) { %><%= preset.i18n ? ',' : '' %>
+      'axios'<% } %>
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -61,8 +61,8 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
-
-      <% if (preset.i18n || preset.eslint) { %>vitePlugins: [<% if (preset.i18n) { %>
+      <% if (preset.i18n || preset.eslint) { %>
+      vitePlugins: [<% if (preset.i18n) { %>
         ['@intlify/unplugin-vue-i18n/vite', {
           // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
           // compositionOnly: false,
@@ -74,8 +74,9 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
           ssr: ctx.modeName === 'ssr',
 
           // you need to set i18n resource including paths !
-          include: [ fileURLToPath(new URL('./src/i18n', import.meta.url)) ],
-        }]<% } %><% if (preset.eslint) { %><% if (preset.i18n) { %>,<% } %>
+          include: [ fileURLToPath(new URL('./src/i18n', import.meta.url)) ]
+        }]<% } %><% if (preset.eslint) { %><% if (preset.i18n) { %>,
+<% } %>
         ['vite-plugin-checker', {
           eslint: {
             lintCommand: 'eslint',
@@ -90,7 +91,7 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      // https: true
+      // https: true,
       open: true // opens browser window automatically
     },
 
@@ -147,7 +148,6 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
       // manualPostHydrationTrigger: true,
 
       pwa: false
-
       // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
 
       // pwaExtendGenerateSWOptions (cfg) {},

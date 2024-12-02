@@ -7,9 +7,9 @@ export async function script ({ scope, utils }) {
       initial: 0,
       choices: [
         { title: 'Quasar App CLI with Vite 6 (latest | v2)', value: 'vite-2', description: 'recommended' },
-        { title: 'Quasar App CLI with Vite 2 (legacy | v1)', value: 'vite-1' },
         { title: 'Quasar App CLI with Webpack (latest | v4)', value: 'webpack-4' },
-        { title: 'Quasar App CLI with Webpack (legacy | v3)', value: 'webpack-3' }
+        { title: '[Legacy] Quasar App CLI with Vite 2 (v1)', value: 'vite-1' },
+        { title: '[Legacy] Quasar App CLI with Webpack (v3)', value: 'webpack-3' }
       ]
     },
     {

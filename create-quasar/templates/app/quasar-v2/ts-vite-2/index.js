@@ -15,10 +15,14 @@ export async function script ({ scope, utils }) {
     {
       type: (_, { preset }) => (preset.eslint ? 'confirm' : null),
       name: 'prettier',
-      initial: false,
+      initial: true,
       message: 'Add Prettier for code formatting?'
     }
   ])
+
+  // ensure it's defined since if not selecting ESLint,
+  // user won't be asked about it hence it won't be defined
+  scope.prettier = scope.prettier || false
 
   utils.createTargetDir(scope)
   utils.renderTemplate('BASE', scope)

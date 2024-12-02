@@ -1,11 +1,11 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
-import { defineConfig } from '#q-app/wrappers';
+import { defineConfig } from '#q-app/wrappers'
 
 export default defineConfig((ctx) => {
-  return {
-    <% if (preset.eslint) { %>eslint: {
+  return {<% if (preset.eslint) { %>
+    eslint: {
       // fix: true,
       // include: [],
       // exclude: [],
@@ -14,17 +14,17 @@ export default defineConfig((ctx) => {
       // rawWebpackEslintPluginOptions: {},
       warnings: true,
       errors: true
-    },<% } %>
-
+    },
+<% } %>
     // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
     // preFetch: true,
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: [
-      <% if (preset.i18n) { %>'i18n',<% } %>
-      <% if (preset.axios) { %>'axios',<% } %>
+    boot: [<% if (preset.i18n) { %>
+      'i18n'<% } %><% if (preset.axios) { %><%= preset.i18n ? ',' : '' %>
+      'axios'<% } %>
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
@@ -138,7 +138,6 @@ export default defineConfig((ctx) => {
       // manualPostHydrationTrigger: true,
 
       pwa: false
-
       // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
 
       // pwaExtendGenerateSWOptions (cfg) {},

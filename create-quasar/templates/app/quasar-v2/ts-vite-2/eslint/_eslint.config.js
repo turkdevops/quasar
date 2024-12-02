@@ -18,7 +18,7 @@ export default [
     // ignores: []
   },
 
-  pluginQuasar.configs.recommended,
+  ...pluginQuasar.configs.recommended,
   js.configs.recommended,
   ...pluginVue.configs[ 'flat/essential' ],
   ...vueTsEslintConfig(),
