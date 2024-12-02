@@ -488,7 +488,7 @@ importers:
     dependencies:
       '@quasar/extras':
         specifier: ^1
-        version: 1.16.14
+        version: link:../extras
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -1999,9 +1999,6 @@ packages:
   '@quasar/babel-preset-app@2.0.3':
     resolution: {integrity: sha512-PYvVXU/TBwF1JU+nEKw8VTsbNi4mdhu7l+l9HIqfY0XZGWbDQLOGjBR8TO6A8dn5SUoilvRh85TG3ZQV01VCBQ==}
     engines: {node: '>= 10.0.0', npm: '>= 5.6.0', yarn: '>= 1.6.0'}
-
-  '@quasar/extras@1.16.14':
-    resolution: {integrity: sha512-kXVCX9GAV2l/av9EQJFRhJ3yp/sshOvc6quo+hGJYnCYj47061sxHXP6amw1vCIlVnyCFjBPeqZP2WcKmGwsOw==}
 
   '@quasar/ssr-helpers@3.0.1':
     resolution: {integrity: sha512-PcPgWElA+PeBTigWINq9rXm3LmUEROdiANizr6hEzVK1EwYzscmweXf0yCc31pbduEbTtTjl4Sr3VLW4e5l/Cg==}
@@ -9059,8 +9056,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - webpack
-
-  '@quasar/extras@1.16.14': {}
 
   '@quasar/ssr-helpers@3.0.1':
     dependencies:
