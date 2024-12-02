@@ -101,7 +101,6 @@
     "elementtree": "0.1.7",
     "esbuild": "^0.24.0",
     "express": "^4.21.1",
-    "fast-glob": "3.3.2",
     "fs-extra": "^11.2.0",
     "html-minifier-terser": "^7.2.0",
     "inquirer": "^9.3.7",
@@ -114,6 +113,7 @@
     "sass-embedded": "^1.80.6",
     "semver": "^7.6.3",
     "serialize-javascript": "^6.0.2",
+    "tinyglobby": "^0.2.10",
     "ts-essentials": "^9.4.2",
     "vite": "^6.0.0",
     "webpack-merge": "^6.0.1"
