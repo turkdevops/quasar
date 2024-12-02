@@ -53,7 +53,7 @@ const gettingStarted = {
     },
     { name: 'How to use Vue', path: '/start/how-to-use-vue' },
     { name: 'Playground', path: '/start/playground' },
-    { name: 'Upgrade Guide', path: '/start/upgrade-guide' },
+    { name: 'UI Upgrade Guide', path: '/start/upgrade-guide' },
     { name: 'VS Code Configuration', path: '/start/vs-code-configuration' }
   ]
 }
