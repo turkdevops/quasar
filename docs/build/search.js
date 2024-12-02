@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import fg from 'fast-glob'
+import { globSync } from 'tinyglobby'
 import md from 'markdown-ast'
 
 import { parseFrontMatter } from './md/md-parse-utils.js'
@@ -16,7 +16,7 @@ const thisFolder = fileURLToPath(new URL('.', import.meta.url))
 
 const mdPagesDir = join(thisFolder, '../src/pages')
 const mdPagesLen = mdPagesDir.length + 1
-const mdPagesList = fg.sync(join(mdPagesDir, '**/*.md'))
+const mdPagesList = globSync(join(mdPagesDir, '**/*.md'))
   .filter(file => hiddenPageRE.test(file) === false)
   .map(key => {
     if (key.indexOf('elements') !== -1) {

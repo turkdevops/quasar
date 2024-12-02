@@ -6,7 +6,7 @@ import { spawn, execSync as exec } from 'node:child_process'
 import { emptyDirSync, ensureDirSync, ensureFileSync, copySync } from 'fs-extra/esm'
 import promptUser from 'prompts'
 import compileTemplate from 'lodash/template.js'
-import fglob from 'fast-glob'
+import { globSync } from 'tinyglobby'
 import { yellow, green } from 'kolorist'
 
 import logger from './logger.js'
@@ -66,7 +66,7 @@ function getCallerPath () {
 
 function renderTemplate (relativePath, scope) {
   const templateDir = join(getCallerPath(), relativePath)
-  const files = fglob.sync([ '**/*' ], { cwd: templateDir })
+  const files = globSync([ '**/*' ], { cwd: templateDir })
 
   for (const rawPath of files) {
     const targetRelativePath = rawPath.split('/').map(name => {

@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import axios from 'axios'
 import fse from 'fs-extra'
-import fg from 'fast-glob'
+import { globSync } from 'tinyglobby'
 
 axios.defaults.withCredentials = true
 
@@ -16,7 +16,7 @@ const mdPagesLen = mdPagesDir.length + 1
 const themedRouteList = [
   '', // landing page
   ...(
-    fg.sync(join(mdPagesDir, '**/*.md')).map(key => {
+    globSync(join(mdPagesDir, '**/*.md')).map(key => {
       const parts = key.substring(mdPagesLen, key.length - 3).split('/')
       const len = parts.length
       const _path = parts[ len - 2 ] === parts[ len - 1 ]
@@ -34,7 +34,7 @@ const lowerCaseRE = /^[a-z]/
 const lightRouteList = [
   'layout-builder',
   ...(
-    fg.sync(join(layoutGalleryDir, '*.vue'))
+    globSync(join(layoutGalleryDir, '*.vue'))
       .map(entry => entry.substring(layoutGalleryLen, entry.length - 4))
       .filter(entry => lowerCaseRE.test(entry))
       .map(entry => 'layout/gallery/' + entry)
