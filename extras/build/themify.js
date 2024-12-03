@@ -36,9 +36,9 @@ svgFiles.forEach((file) => {
   }
 
   try {
-    const { svgDef, typeDef } = extract(file, name);
-    svgExports.push(svgDef);
-    typeExports.push(typeDef);
+    const { svgDef, typeDef } = extract(file, name)
+    const svgDef2 = svgDef.replace(/fill:#000000;/g, 'fill:currentColor;')
+    svgExports.push(svgDef2)
 
     iconNames.add(name);
   } catch (err) {
