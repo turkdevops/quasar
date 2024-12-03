@@ -36,7 +36,20 @@ export default [
   ...pluginVue.configs[ 'flat/essential' ],
 
   // https://github.com/vuejs/eslint-config-typescript
-  ...vueTsEslintConfig(),
+  ...vueTsEslintConfig({
+    // Optional: extend additional configurations from typescript-eslint'.
+    // Supports all the configurations in
+    // https://typescript-eslint.io/users/configs#recommended-configurations
+    extends: [
+      // By default, only the recommended rules are enabled.
+      'recommended'
+      // You can also manually enable the stylistic rules.
+      // "stylistic",
+
+      // Other utility configurations, such as 'eslintRecommended', (note that it's in camelCase)
+      // are also extendable here. But we don't recommend using them directly.
+    ]
+  }),
 
   {
     languageOptions: {
@@ -55,13 +68,13 @@ export default [
       }
     },
 
-    linterOptions: {
-      reportUnusedDisableDirectives: 'warn'
-    },
-
     // add your custom rules here
     rules: {
       'prefer-promise-reject-errors': 'off',
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { prefer: 'type-imports' }
+      ],
 
       // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'

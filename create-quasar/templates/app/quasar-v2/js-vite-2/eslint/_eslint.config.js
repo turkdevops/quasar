@@ -51,10 +51,6 @@ export default [
       }
     },
 
-    linterOptions: {
-      reportUnusedDisableDirectives: 'warn'
-    },
-
     // add your custom rules here
     rules: {
       'prefer-promise-reject-errors': 'off',

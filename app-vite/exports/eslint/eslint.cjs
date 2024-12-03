@@ -8,10 +8,12 @@ const ignoreList = [
 
 module.exports = {
   configs: {
-    // using Array so we can add more stuff later if needed
-    // without breaking changes
-    recommended: [{
-      ignores: ignoreList
-    }]
+    // using a function so we can add more configurable
+    // stuff later if needed without breaking changes
+    recommended () {
+      return [
+        { ignores: ignoreList }
+      ]
+    }
   }
 }
