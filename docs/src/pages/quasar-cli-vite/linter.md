@@ -42,7 +42,7 @@ build: {
   vitePlugins: [
     ['vite-plugin-checker', {
       eslint: {
-        lintCommand: 'eslint',
+        lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{js,mjs,cjs,vue}"',
         useFlatConfig: true
       }
     }, { server: false }]
@@ -166,7 +166,7 @@ build: {
     ['vite-plugin-checker', {
       vueTsc: true,
       eslint: {
-        lintCommand: 'eslint',
+        lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{ts,js,mjs,cjs,vue}"',
         useFlatConfig: true
       }
     }, { server: false }]
