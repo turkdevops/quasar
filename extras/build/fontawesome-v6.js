@@ -27,7 +27,7 @@ const svgExports = [];
 const typeExports = [];
 
 iconTypes.forEach((type) => {
-  const svgFiles = tinyglobby.sync(svgFolder + `/${type}/*.svg`);
+  const svgFiles = tinyglobby.globSync(svgFolder + `/${type}/*.svg`);
 
   svgFiles.forEach((file) => {
     const name = defaultNameMapper(file, prefix + type.charAt(0));
