@@ -82,7 +82,7 @@ export default [
   },
 
   {
-    files: [ 'src-pwa/custom-service-worker.{js,ts}' ],
+    files: [ 'src-pwa/custom-service-worker.ts' ],
     languageOptions: {
       globals: {
         ...globals.serviceworker
