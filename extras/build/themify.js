@@ -22,7 +22,7 @@ const {
 } = require("./utils");
 
 const svgFolder = resolve(__dirname, `../node_modules/${packageName}/SVG/`);
-const svgFiles = tinyglobby.sync(svgFolder + "/*.svg");
+const svgFiles = tinyglobby.globSync(svgFolder + '/*.svg')
 let iconNames = new Set();
 
 const svgExports = [];
@@ -36,9 +36,9 @@ svgFiles.forEach((file) => {
   }
 
   try {
-    const { svgDef, typeDef } = extract(file, name);
-    svgExports.push(svgDef);
-    typeExports.push(typeDef);
+    const { svgDef, typeDef } = extract(file, name)
+    const svgDef2 = svgDef.replace(/fill:#000000;/g, 'fill:currentColor;')
+    svgExports.push(svgDef2)
 
     iconNames.add(name);
   } catch (err) {

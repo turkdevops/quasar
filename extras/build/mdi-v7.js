@@ -21,7 +21,7 @@ const {
 } = require("./utils");
 
 const svgFolder = resolve(__dirname, `../node_modules/${packageName}/svg/`);
-const svgFiles = tinyglobby.sync(svgFolder + "/**/*.svg");
+const svgFiles = tinyglobby.globSync(svgFolder + "/**/*.svg");
 let iconNames = new Set();
 
 const svgExports = [];

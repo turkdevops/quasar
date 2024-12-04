@@ -10,7 +10,7 @@ const { join, resolve, basename } = require("path");
 const dist = resolve(__dirname, "../animate");
 
 const pkgFolder = resolve(__dirname, `../node_modules/${packageName}/`);
-const cssFiles = tinyglobby.sync(pkgFolder + "/source/*/*.css");
+const cssFiles = tinyglobby.globSync(pkgFolder + "/source/*/*.css");
 const cssNames = new Set();
 
 const inAnimations = [];
