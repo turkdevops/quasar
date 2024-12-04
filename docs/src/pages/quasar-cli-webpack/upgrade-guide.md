@@ -155,14 +155,14 @@ If you are unsure that you won't skip by mistake any of the recommended changes,
 <br><br>
 ```tabs
 <<| bash Yarn |>>
-$ yarn create quasar
+$ yarn create quasar@latest
 <<| bash NPM |>>
 $ npm init quasar@latest
 <<| bash PNPM |>>
-$ pnpm create quasar
+$ pnpm create quasar@latest
 <<| bash Bun |>>
 # experimental support
-$ bun create quasar
+$ bun create quasar@latest
 ```
 <br>
 When asked to "Pick Quasar App CLI variant", answer with: "Quasar App CLI with Webpack (v4)".

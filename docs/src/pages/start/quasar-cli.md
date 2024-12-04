@@ -31,17 +31,17 @@ You will also be able to use the command line, so it will be almost identical to
 ```tabs
 <<| bash Yarn |>>
 $ yarn global add @quasar/cli
-$ yarn create quasar
+$ yarn create quasar@latest
 <<| bash NPM |>>
 $ npm i -g @quasar/cli
 $ npm init quasar@latest
 <<| bash PNPM |>>
 $ pnpm add -g @quasar/cli
-$ pnpm create quasar
+$ pnpm create quasar@latest
 <<| bash Bun |>>
 # experimental support
 $ bun install -g @quasar/cli
-$ bun create quasar
+$ bun create quasar@latest
 ```
 
 Pick `Quasar CLI with Vite` if you want:
@@ -63,14 +63,14 @@ Pick `Quasar CLI with Vite` if you want:
 
     ```tabs
     <<| bash Yarn |>>
-    $ yarn create quasar
+    $ yarn create quasar@latest
     <<| bash NPM |>>
     $ npm init quasar@latest
     <<| bash PNPM |>>
-    $ pnpm create quasar
+    $ pnpm create quasar@latest
     <<| bash Bun |>>
     # experimental support
-    $ bun create quasar
+    $ bun create quasar@latest
     ```
 
     <br>
