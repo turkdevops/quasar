@@ -76,7 +76,7 @@ Some of the work below has already been backported to the old @quasar/app-vite v
 
 ### Beginning of the upgrade process
 
-::: tip Recommendation
+::: tip
 If you are unsure that you won't skip by mistake any of the recommended changes, you can scaffold a new project folder with the @quasar/app-vite v2 at any time and then easily start porting your app from there. The bulk of the changes refer to the different project folder config files and mostly NOT to your /src files.
 <br><br>
 ```tabs
@@ -216,6 +216,28 @@ Preparations:
   -  env: require('dotenv').config().parsed
   - }
   ```
+  <br>
+
+* If you have linting, please review your setup by going to [Linter page](/quasar-cli-vite/linter). You will need to:
+  1. Uninstall all your current linting packages
+  2. Rename `/.eslintrc.cjs` to `/eslint.config.js` (check link above on how the new file should look)
+  3. Port `/.eslintignore` to the new `/eslint.config.js`
+  4. Delete `/.eslintignore`
+  5. Install the new dependencies (check the link above).
+  6. Edit your `/package.json` > scripts > lint:
+  <br><br>
+
+  ```diff /package.json
+  "scripts": {
+  -  "lint": "eslint --ext .js,.ts,.vue ./"
+
+  // for non-TS projects:
+  +  "lint": "lint": "eslint -c ./eslint.config.js './src*/**/*.{js,cjs,mjs,vue}'"
+  // for TS projects:
+  +  "lint": "lint": "eslint -c ./eslint.config.js './src*/**/*.{ts,js,cjs,mjs,vue}'"
+  }
+  ```
+  <br>
 
 * The types feature flag files will now be auto-generated in the `.quasar` folder. So, you must delete them:
 
@@ -427,10 +449,6 @@ Preparations:
     }
   }
   ```
-
-### Linting (TS or JS)
-
-If you have linting, please review your setup by going to [Linter page](/quasar-cli-vite/linter). You will need to uninstall and install new dependencies.
 
 ### Capacitor / Cordova modes changes
 
