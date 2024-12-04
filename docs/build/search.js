@@ -16,7 +16,7 @@ const thisFolder = fileURLToPath(new URL('.', import.meta.url))
 
 const mdPagesDir = join(thisFolder, '../src/pages')
 const mdPagesLen = mdPagesDir.length + 1
-const mdPagesList = globSync(join(mdPagesDir, '**/*.md'))
+const mdPagesList = globSync(join(mdPagesDir, '**/*.md'), { absolute: true })
   .filter(file => hiddenPageRE.test(file) === false)
   .map(key => {
     if (key.indexOf('elements') !== -1) {
