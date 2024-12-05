@@ -65,7 +65,7 @@ function connectToDevServer (devServerPort) {
     chrome.runtime.reload()
   }
 
-  socket.addEventListener('open', (ws) => {
+  socket.addEventListener('open', () => {
     console.log('[QBex|HMR] Connected')
     // send a ping every 30s to keep the connection alive
     const interval = setInterval(() => socket.send('ping'), 30000)
