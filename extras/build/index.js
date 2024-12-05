@@ -12,7 +12,7 @@ const runScript = isParallel ? fork : require
 
 const materialFontVersions = {}
 
-async function handleChild(child) {
+async function handleChild (child) {
   return new Promise((resolve) => {
     child.on('exit', resolve)
 
@@ -35,10 +35,10 @@ async function handleChild(child) {
           if (line.endsWith('.woff2') || line.endsWith('.woff')) {
             const matches = line.match(/.*\/(.*?)/)
             if (matches) {
-              const parts = matches[0].split('/')
+              const parts = matches[ 0 ].split('/')
               if (parts.length >= 3) {
-                const [name, version] = parts.slice(-3, -1)
-                materialFontVersions[name] = version
+                const [ name, version ] = parts.slice(-3, -1)
+                materialFontVersions[ name ] = version
               }
             }
           }
@@ -48,15 +48,16 @@ async function handleChild(child) {
   })
 }
 
-async function runJob(queue, scriptFile) {
+async function runJob (queue, scriptFile) {
   if (isParallel) {
     queue.push(scriptFile)
-  } else {
+  }
+  else {
     runScript(join(__dirname, scriptFile))
   }
 }
 
-async function generate() {
+async function generate () {
   const queue = new Queue(
     async (scriptFile) => {
       await retry(async ({ tries }) => {
@@ -103,7 +104,7 @@ async function generate() {
   // Add timing end and display duration
   const endTime = Date.now()
   const duration = endTime - startTime
-  console.log(`\nTotal execution time: ${duration}ms`)
+  console.log(`\nTotal execution time: ${ duration }ms`)
 }
 
 generate()
