@@ -171,7 +171,7 @@ When asked to "Pick Quasar App CLI variant", answer with: "Quasar App CLI with W
 Preparations:
 
 * If using the global installation of Quasar CLI (`@quasar/cli`), make sure that you have the latest one. This is due to the support of quasar.config file in multiple formats.
-* Again, we highlight that the minimum supported version of Node.js is now v16 (always use the LTS versions of Node.js - the higher the version the better).
+* Again, we highlight that the minimum supported version of Node.js is now v18 (always use the LTS versions of Node.js - the higher the version the better).
 
 * Edit your `/package.json` on the `@quasar/app-webpack` entry and assign it `^4.0.0`:
   ```diff /package.json
