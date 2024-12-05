@@ -31,7 +31,7 @@ You will also be able to use the command line, so it will be almost identical to
 ```tabs
 <<| bash Yarn |>>
 $ yarn global add @quasar/cli
-$ yarn create quasar@latest
+$ yarn create quasar
 <<| bash NPM |>>
 $ npm i -g @quasar/cli
 $ npm init quasar@latest
@@ -63,7 +63,7 @@ Pick `Quasar CLI with Vite` if you want:
 
     ```tabs
     <<| bash Yarn |>>
-    $ yarn create quasar@latest
+    $ yarn create quasar
     <<| bash NPM |>>
     $ npm init quasar@latest
     <<| bash PNPM |>>

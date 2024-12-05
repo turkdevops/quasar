@@ -97,7 +97,7 @@ If your objective is to install a 3rd-party library into Vue, then it depends up
 
 ```tabs
 <<| bash Yarn |>>
-$ yarn create quasar@latest
+$ yarn create quasar
 # then pick the AppExtension option
 <<| bash NPM |>>
 $ npm init quasar@latest

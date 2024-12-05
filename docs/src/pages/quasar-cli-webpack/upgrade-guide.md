@@ -155,7 +155,7 @@ If you are unsure that you won't skip by mistake any of the recommended changes,
 <br><br>
 ```tabs
 <<| bash Yarn |>>
-$ yarn create quasar@latest
+$ yarn create quasar
 <<| bash NPM |>>
 $ npm init quasar@latest
 <<| bash PNPM |>>
