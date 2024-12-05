@@ -9,7 +9,7 @@ import type { Router } from 'vue-router';
  */
 declare module 'pinia' {
   export interface PiniaCustomProperties {
-    readonly router: Router;
+    // add your custom properties here, if any
   }
 }
 
