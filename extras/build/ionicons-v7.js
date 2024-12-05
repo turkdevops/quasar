@@ -5,7 +5,7 @@ const prefix = "ion";
 
 // ------------
 
-const tinyglobby = require("tinyglobby");
+const { globSync } = require("tinyglobby");
 const { copySync } = require("fs-extra");
 const { writeFileSync } = require("fs");
 const { resolve, join } = require("path");
@@ -18,7 +18,7 @@ const svgFolder = resolve(
   __dirname,
   `../node_modules/${packageName}/dist/svg/`,
 );
-const svgFiles = tinyglobby.globSync(svgFolder + "/*.svg");
+const svgFiles = globSync(svgFolder + "/*.svg");
 let iconNames = new Set();
 
 const svgExports = [];

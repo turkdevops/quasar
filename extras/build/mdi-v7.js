@@ -5,7 +5,7 @@ const prefix = "mdi";
 
 // ------------
 
-const tinyglobby = require("tinyglobby");
+const { globSync } = require("tinyglobby");
 const { copySync } = require("fs-extra");
 const { writeFileSync } = require("fs");
 const { resolve, join } = require("path");
@@ -21,7 +21,7 @@ const {
 } = require("./utils");
 
 const svgFolder = resolve(__dirname, `../node_modules/${packageName}/svg/`);
-const svgFiles = tinyglobby.globSync(svgFolder + "/**/*.svg");
+const svgFiles = globSync(svgFolder + "/**/*.svg");
 let iconNames = new Set();
 
 const svgExports = [];

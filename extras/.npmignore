@@ -7,3 +7,5 @@ roboto-font-latin-ext/update.sh
 build/
 .vscode
 .postcssrc.js
+postcss.config.cjs
+.prettierrc

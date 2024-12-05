@@ -5,7 +5,7 @@ const prefix = "eva";
 
 // ------------
 
-const tinyglobby = require("tinyglobby");
+const { globSync } = require("tinyglobby");
 const { copySync } = require("fs-extra");
 const { writeFileSync } = require("fs");
 const { resolve, join } = require("path");
@@ -28,7 +28,7 @@ const svgExports = [];
 const typeExports = [];
 
 iconTypes.forEach((type) => {
-  const svgFiles = tinyglobby.globSync(svgFolder + `/${type}/svg/*.svg`);
+  const svgFiles = globSync(svgFolder + `/${type}/svg/*.svg`);
 
   svgFiles.forEach((file) => {
     const name = defaultNameMapper(file, prefix);
