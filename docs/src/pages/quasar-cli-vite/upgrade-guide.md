@@ -429,9 +429,9 @@ Preparations:
   }
   ```
 
-  If you are using Pinia, we are now augmenting the `router` property inside `.quasar/pinia.d.ts` automatically. So, you can remove the `router` property from the `PiniaCustomProperties` interface in the `src/router/index.ts` file. It will continue to work as before, but it's recommended to remove it to avoid confusion.
+  If you are using Pinia, we are now augmenting the `router` property inside `.quasar/pinia.d.ts` automatically. So, you can remove the `router` property from the `PiniaCustomProperties` interface in the `src/stores/index.ts` file. It will continue to work as before, but it's recommended to remove it to avoid confusion.
 
-  ```diff /src/router/index.ts
+  ```diff /src/stores/index.ts
   import { defineStore } from '#q-app/wrappers'
   import { createPinia } from 'pinia'
   - import { type Router } from 'vue-router';
