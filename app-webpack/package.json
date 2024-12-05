@@ -163,7 +163,7 @@
   "peerDependencies": {
     "@electron/packager": ">= 18",
     "electron-builder": ">= 22",
-    "eslint": "^8.57.0",
+    "eslint": ">= 8.57.1",
     "pinia": "^2.0.0",
     "quasar": "^2.16.0",
     "typescript": ">= 5.4",
