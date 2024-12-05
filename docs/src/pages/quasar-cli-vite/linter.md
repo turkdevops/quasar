@@ -281,9 +281,9 @@ export default [
 Please be sure to ignore unused files to increase performance. If you lint unused files/folders the UX will degrade significantly.
 :::
 
-You can ignore files by editing your `/postcss.config.js` file:
+You can ignore files by editing your `/eslint.config.js` file:
 
-```js /postcss.config.js
+```js /eslint.config.js
 export default [
   {
     /**
