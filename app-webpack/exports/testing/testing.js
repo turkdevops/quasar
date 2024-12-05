@@ -2,9 +2,9 @@
  * This endpoint is used exclusively by @quasar/testing AEs
  */
 
-const { getCtx } = require('./utils/get-ctx.js')
-const { QuasarConfigFile } = require('./quasar-config-file.js')
-const { quasarSpaConfig } = require('./modes/spa/spa-config.js')
+const { getCtx } = require('../../lib/utils/get-ctx.js')
+const { QuasarConfigFile } = require('../../lib/quasar-config-file.js')
+const { quasarSpaConfig } = require('../../lib/modes/spa/spa-config.js')
 
 /**
  * Retrieve the webpack config (SPA only) for @quasar/testing AE
