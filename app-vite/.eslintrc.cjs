@@ -31,6 +31,15 @@ module.exports = {
         'quasar/node'
       ]
     },
+
+    {
+      files: [ '**/*.cjs' ],
+      parserOptions: {
+        sourceType: 'commonjs',
+        ecmaVersion: 'latest'
+      }
+    },
+
     {
       files: [ 'exports/bex/**/*.js' ],
       parserOptions: {
