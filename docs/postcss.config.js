@@ -1,8 +1,9 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
+import autoprefixer from 'autoprefixer'
 
-module.exports = {
+export default {
   plugins: [
-    require('autoprefixer')({
+    autoprefixer({
       overrideBrowserslist: [
         'last 4 Chrome versions',
         'last 4 Firefox versions',
