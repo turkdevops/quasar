@@ -24,6 +24,7 @@ module.exports = {
         // es2023: true // node 22 and above
       },
       parserOptions: {
+        sourceType: 'module',
         ecmaVersion: '2022' // needs to be explicitly stated for some reason
       },
       extends: [
