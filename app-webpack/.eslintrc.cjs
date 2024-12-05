@@ -1,6 +1,10 @@
 module.exports = {
   root: true,
 
+  parserOptions: {
+    sourceType: 'commonjs'
+  },
+
   extends: [
     'eslint:recommended',
     'quasar/base'
