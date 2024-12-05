@@ -18,7 +18,7 @@ module.exports = {
   overrides: [
     {
       files: [ '**/*.js' ],
-      excludedFiles: [ 'bex/**' ],
+      excludedFiles: [ 'exports/bex/**' ],
       env: {
         es2022: true
         // es2023: true // node 22 and above
@@ -31,7 +31,7 @@ module.exports = {
       ]
     },
     {
-      files: [ 'bex/**/*.js' ],
+      files: [ 'exports/bex/**/*.js' ],
       parserOptions: {
         ecmaVersion: 'latest'
       },
