@@ -209,6 +209,20 @@ function parseDom (name, el, pathsDefinitions) {
   })
 }
 
+function getWidthHeightAsViewbox (element) {
+  // Retrieve width and height attributes
+  const width = parseFloat(element.getAttribute('width') || '0')
+  const height = parseFloat(element.getAttribute('height') || '0')
+
+  // Ensure both width and height are valid numbers
+  if (width > 0 && height > 0) {
+    return `0 0 ${ width } ${ height }`
+  }
+
+  // Return an empty string if width or height is missing or invalid
+  return ''
+}
+
 function parseSvgContent (name, content) {
   let viewBox
   const pathsDefinitions = []
