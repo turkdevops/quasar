@@ -192,6 +192,7 @@ async function getAsset (type) {
 
     if (fs.existsSync(targetFolder) === false) {
       fse.ensureDir(targetFolder)
+
       try {
         fse.copySync(
           appPaths.resolve.cli(`templates/store/${ storeProvider.name }/${ format }`),

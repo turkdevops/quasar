@@ -84,10 +84,8 @@
   </q-layout>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-@Component
-export default class LayoutName extends Vue {
-  leftDrawer = false
-}
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const leftDrawer = ref(false);
 </script>

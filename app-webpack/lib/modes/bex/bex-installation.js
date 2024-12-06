@@ -20,7 +20,7 @@ module.exports.addMode = async function addMode ({
   fse.copySync(appPaths.resolve.cli('templates/bex/common'), appPaths.bexDir)
 
   const hasTypescript = cacheProxy.getModule('hasTypescript')
-  const format = hasTypescript ? 'ts' : 'default'
+  const format = hasTypescript ? 'ts' : 'js'
   fse.copySync(appPaths.resolve.cli(`templates/bex/${ format }`), appPaths.bexDir)
 
   log('Browser Extension support was added')

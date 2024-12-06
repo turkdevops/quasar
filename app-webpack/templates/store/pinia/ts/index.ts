@@ -1,6 +1,5 @@
 import { defineStore } from '#q-app/wrappers'
 import { createPinia } from 'pinia'
-import { type Router } from 'vue-router';
 
 /*
  * When adding new properties to stores, you should also
@@ -8,10 +7,11 @@ import { type Router } from 'vue-router';
  * @see https://pinia.vuejs.org/core-concepts/plugins.html#typing-new-store-properties
  */
 declare module 'pinia' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   export interface PiniaCustomProperties {
-    readonly router: Router;
+    // add your custom properties here
   }
-}<% /* TODO: move this under .quasar */ %>
+}
 
 /*
  * If not building with SSR mode, you can

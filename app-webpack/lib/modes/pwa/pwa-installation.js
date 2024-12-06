@@ -36,7 +36,7 @@ module.exports.addMode = function addMode ({
 
   const hasTypescript = cacheProxy.getModule('hasTypescript')
   const { hasEslint } = cacheProxy.getModule('eslint')
-  const format = hasTypescript ? 'ts' : 'default'
+  const format = hasTypescript ? 'ts' : 'js'
 
   fse.copySync(
     appPaths.resolve.cli(`templates/pwa/${ format }`),

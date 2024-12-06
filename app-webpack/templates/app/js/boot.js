@@ -1,7 +1,7 @@
 import { defineBoot } from '#q-app/wrappers'
 
 // "async" is optional;
-// more info on params: https://v2.quasar.dev/quasar-cli/boot-files
+// more info on params: https://v2.quasar.dev/quasar-cli-webpack/boot-files
 export default defineBoot(async (/* { app, router, ... } */) => {
   // something to do
 })

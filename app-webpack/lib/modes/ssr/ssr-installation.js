@@ -16,7 +16,7 @@ module.exports.addMode = function addMode ({
 
   log('Creating SSR source folder...')
   const hasTypescript = cacheProxy.getModule('hasTypescript')
-  const format = hasTypescript ? 'ts' : 'default'
+  const format = hasTypescript ? 'ts' : 'js'
   fse.copySync(
     appPaths.resolve.cli(`templates/ssr/${ format }`),
     appPaths.ssrDir
