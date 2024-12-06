@@ -38,8 +38,8 @@ function showHelp (returnCode) {
     # Create src/layouts/shop/Checkout.vue
     $ quasar new layout shop/Checkout.vue
 
-    # Create src/layouts/shop/Checkout.vue with TypeScript options API
-    $ quasar new layout -f ts-options shop/Checkout.vue
+    # Create src/layouts/shop/Checkout.vue (forcing TypeScript)
+    $ quasar new layout -f ts shop/Checkout.vue
 
     # Create a store with TypeScript (-f ts is optional if tsconfig.json is present)
     $ quasar new store -f ts myStore
@@ -81,7 +81,7 @@ const { appPaths, cacheProxy } = getCtx()
 const hasTypescript = await cacheProxy.getModule('hasTypescript')
 
 if (!argv.format) {
-  argv.format = argv.f = hasTypescript ? 'ts' : 'default'
+  argv.format = argv.f = hasTypescript ? 'ts' : 'js'
 }
 
 /** @type {string[]} */
