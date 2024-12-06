@@ -347,12 +347,12 @@ $ quasar new -h
     Quickly scaffold files.
 
   Usage
-    $ quasar new <p|page> [-f <option>] <page_file_name>
-    $ quasar new <l|layout> [-f <option>] <layout_file_name>
-    $ quasar new <c|component> [-f <option>] <component_file_name>
-    $ quasar new <b|boot> [-f ts] <boot_name>
-    $ quasar new <s|store> [-f ts] <store_module_name>
-    $ quasar new ssrmiddleware [-f ts] <middleware_name>
+    $ quasar new <p|page> [-f <js|ts>] <page_file_name>
+    $ quasar new <l|layout> [-f <js|ts>] <layout_file_name>
+    $ quasar new <c|component> [-f <js|ts>] <component_file_name>
+    $ quasar new <b|boot> [-f <js|ts>] <boot_name>
+    $ quasar new <s|store> [-f <js|ts>] <store_module_name>
+    $ quasar new ssrmiddleware [-f <js|ts>] <middleware_name>
 
   Examples
     # Create src/pages/MyNewPage.vue:
@@ -364,8 +364,8 @@ $ quasar new -h
     # Create src/layouts/shop/Checkout.vue
     $ quasar new layout shop/Checkout.vue
 
-    # Create src/layouts/shop/Checkout.vue with TypeScript options API
-    $ quasar new layout -f ts-options shop/Checkout.vue
+    # Create src/layouts/shop/Checkout.vue (forcing TypeScript)
+    $ quasar new layout -f ts shop/Checkout.vue
 
     # Create a store with TypeScript (-f ts is optional if tsconfig.json is present)
     $ quasar new store -f ts myStore
@@ -373,14 +373,11 @@ $ quasar new -h
   Options
     --help, -h            Displays this message
 
-    --format -f <option>  (optional) Use a supported format for the template
-                          Possible values:
-                             * default - Default JS template
-                             * ts-composition - TS composition API (default if using TS)
-                             * ts-composition-setup - TS composition API with <script setup>
-                             * ts-options - TS options API
-                             * ts-class - [DEPRECATED] TS class style syntax
-                             * ts - Plain TS template (for boot, store, and ssrmiddleware files)
+    --format -f <option>  (optional) Use a supported format for the template.
+                          This gets inferred automatically for your project.
+                          Possible overriding values:
+                             * js - JS template
+                             * ts - TS template
 ```
 
 ## Mode
