@@ -224,13 +224,13 @@ function writeFeatureFlags (quasarConf, fsUtils) {
 }
 
 /*
-  Load app-vite's augmentations for `quasar` package.
+  Load app-webpack's augmentations for `quasar` package.
   It will augment CLI-specific features.
 
   Load Vite's client types, see https://vitejs.dev/guide/features#client-types
 */
 const declarationsTemplate = `/* eslint-disable */
-/// <reference types="@quasar/app-vite" />
+/// <reference types="@quasar/app-webpack" />
 
 /// <reference types="vite/client" />
 `
