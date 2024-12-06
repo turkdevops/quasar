@@ -20,7 +20,10 @@ const quasarBexConfig = {
   webpack: async quasarConf => {
     const webpackChain = await createWebpackChain(quasarConf, { compileId: 'webpack-bex', threadName: 'BEX UI' })
 
-    if (quasarConf.ctx.target.firefox) {
+    if (
+      quasarConf.ctx.prod === true
+      || quasarConf.ctx.target.firefox
+    ) {
       webpackChain.output
         .path(
           join(quasarConf.build.distDir, 'www')
