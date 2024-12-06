@@ -36,7 +36,10 @@ export const quasarBexConfig = {
       }
     })
 
-    if (quasarConf.ctx.target.firefox) {
+    if (
+      quasarConf.ctx.prod === true
+      || quasarConf.ctx.target.firefox
+    ) {
       cfg.build.outDir = join(quasarConf.build.distDir, 'www')
     }
 
