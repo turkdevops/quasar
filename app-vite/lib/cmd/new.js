@@ -86,7 +86,7 @@ if (!argv.format) {
 
 /** @type {string[]} */
 const [ rawType, ...names ] = argv._
-/** @type {{ format: 'default'|'ts'|'ts-options'|'ts-class'|'ts-composition'|'ts-composition-setup'}} */
+/** @type {{ format: 'js'|'ts'}} */
 const { format } = argv
 
 const typeAliasMap = {
@@ -192,20 +192,19 @@ async function getAsset (type) {
 
     if (fs.existsSync(targetFolder) === false) {
       fse.ensureDir(targetFolder)
-      fse.copy(
-        appPaths.resolve.cli(`templates/store/${ storeProvider.name }/${ format }`),
-        targetFolder,
-        err => {
-          if (err) {
-            console.warn(err)
-            warn(`Could not generate ${ relativePath }.`, 'FAIL')
-            return
-          }
+      try {
+        fse.copySync(
+          appPaths.resolve.cli(`templates/store/${ storeProvider.name }/${ format }`),
+          targetFolder
+        )
+      }
+      catch (err) {
+        console.warn(err)
+        warn(`Could not generate ${ relativePath }.`, 'FAIL')
+        process.exit(1)
+      }
 
-          log(`Generated ${ relativePath }`)
-          log()
-        }
-      )
+      log(`Generated ${ relativePath }`)
     }
 
     return {

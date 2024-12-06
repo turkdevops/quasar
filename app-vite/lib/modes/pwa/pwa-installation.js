@@ -44,7 +44,7 @@ export async function addMode ({
 
   const hasTypescript = await cacheProxy.getModule('hasTypescript')
   const { hasEslint } = await cacheProxy.getModule('eslint')
-  const format = hasTypescript ? 'ts' : 'default'
+  const format = hasTypescript ? 'ts' : 'js'
 
   fse.copySync(
     appPaths.resolve.cli(`templates/pwa/${ format }`),
