@@ -244,6 +244,16 @@ declare module '*.vue' {
 }
 `
 
+const piniaTemplate = `/* eslint-disable */
+import { Router } from 'vue-router';
+
+declare module 'pinia' {
+  export interface PiniaCustomProperties {
+    readonly router: Router;
+  }
+}
+`
+
 /**
  * @param {import('../types/configuration/conf').QuasarConf} quasarConf
  */
@@ -252,5 +262,10 @@ function writeDeclarations (quasarConf, fsUtils) {
 
   if (quasarConf.build.typescript.vueShim) {
     fsUtils.writeFileSync('shims-vue.d.ts', vueShimsTemplate)
+  }
+
+  const { hasStore, storePackage } = quasarConf.metaConf
+  if (hasStore && storePackage === 'pinia') {
+    fsUtils.writeFileSync('pinia.d.ts', piniaTemplate)
   }
 }
