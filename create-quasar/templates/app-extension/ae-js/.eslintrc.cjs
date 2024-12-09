@@ -9,10 +9,6 @@ module.exports = {
       'preset',
       'orgName',
       'license',
-      'repositoryType',
-      'repositoryURL',
-      'homepage',
-      'bugs',
 
       'codeFormat'
     ]

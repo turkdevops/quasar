@@ -32,8 +32,12 @@ export async function script ({ scope, utils }) {
       ]
     },
 
-    utils.commonPrompts.description,
-    utils.commonPrompts.author,
+    utils.commonPrompts.description
+  ])
+
+  await utils.injectAuthor(scope)
+
+  await utils.prompts(scope, [
     {
       type: 'text',
       name: 'license',
@@ -59,27 +63,6 @@ export async function script ({ scope, utils }) {
         }
       ],
       format: utils.convertArrayToObject
-    },
-    {
-      type: 'text',
-      name: 'repositoryType',
-      initial: 'git',
-      message: 'Repository type:'
-    },
-    {
-      type: 'text',
-      name: 'repositoryURL',
-      message: 'Repository URL (eg https://github.com/quasarframework/quasar):'
-    },
-    {
-      type: 'text',
-      name: 'homepage',
-      message: 'Homepage URL:'
-    },
-    {
-      type: 'text',
-      name: 'bugs',
-      message: 'Issue reporting URL (eg https://github.com/quasarframework/quasar/issues):'
     }
   ])
 

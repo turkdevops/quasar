@@ -23,8 +23,11 @@ export async function script ({ scope, utils }) {
 
     utils.commonPrompts.productName,
     utils.commonPrompts.description,
-    utils.commonPrompts.author,
+  ])
 
+  await utils.injectAuthor(scope)
+
+  await utils.prompts(scope, [
     {
       type: 'select',
       name: 'sfcStyle',

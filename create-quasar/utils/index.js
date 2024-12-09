@@ -337,41 +337,29 @@ const commonPrompts = {
       val.length > 0 || 'Invalid project description'
   },
 
-  author: {
-    type: 'text',
-    name: 'author',
-    initial: () => getGitUser(),
-    message: 'Author:'
-  },
-
   license: {
     type: 'text',
     name: 'license',
     message: 'License type',
     initial: 'MIT'
-  },
-
-  repositoryType: {
-    type: 'text',
-    name: 'repositoryType',
-    message: 'Repository type:',
-    initial: 'git'
-  },
-  repositoryURL: {
-    type: 'text',
-    name: 'repositoryURL',
-    message: 'Repository URL: (eg https://github.com/quasarframework/quasar)'
-  },
-  homepage: {
-    type: 'text',
-    name: 'homepage',
-    message: 'Homepage URL:'
-  },
-  bugs: {
-    type: 'text',
-    name: 'bugs',
-    message: 'Issue reporting URL: (eg https://github.com/quasarframework/quasar/issues)'
   }
+}
+
+export async function injectAuthor (scope) {
+  const author = getGitUser()
+
+  if (author) {
+    scope.author = author
+    return
+  }
+
+  await prompts(scope, [
+    {
+      type: 'text',
+      name: 'author',
+      message: 'Author:'
+    }
+  ])
 }
 
 export default {
@@ -391,5 +379,6 @@ export default {
   ensureOutsideProject,
   initializeGit,
 
-  commonPrompts
+  commonPrompts,
+  injectAuthor
 }

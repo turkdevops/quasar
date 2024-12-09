@@ -9,12 +9,6 @@
   "scripts": {
     "test": "echo \"No test specified\" && exit 0"
   },
-  "repository": {
-    "type": "<%= repositoryType %>",
-    "url": "<%= repositoryURL %>"
-  },
-  "bugs": "<%= bugs %>",
-  "homepage": "<%= homepage %>",
   "engines": {
     "node": ">= 12.2.0",
     "npm": ">= 5.6.0",

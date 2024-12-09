@@ -10,10 +10,6 @@ module.exports = {
       'orgName',
       'pkgName',
       'license',
-      'repositoryType',
-      'repositoryURL',
-      'homepage',
-      'bugs',
 
       'packageManagerField',
     ]

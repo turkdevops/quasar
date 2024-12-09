@@ -5,12 +5,6 @@
   "author": "<%= author %>",
   "license": "<%= license %>",
   "type": "<%= aeCodeFormat === 'esm' ? 'module' : 'commonjs' %>",
-  "repository": {
-    "type": "<%= repositoryType %>",
-    "url": "<%= repositoryURL %>"
-  },
-  "bugs": "<%= bugs %>",
-  "homepage": "<%= homepage %>",
   "dependencies": {
     "quasar-ui-<%= name %>": "latest"
   },

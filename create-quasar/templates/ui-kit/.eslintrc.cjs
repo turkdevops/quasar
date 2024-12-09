@@ -17,11 +17,7 @@ module.exports = {
       'componentName',
       'directiveName',
 
-      'license',
-      'repositoryType',
-      'repositoryURL',
-      'homepage',
-      'bugs'
+      'license'
     ]
   },
 
