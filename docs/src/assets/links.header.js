@@ -98,8 +98,8 @@ export const secondaryToolbarLinks = [
   gettingStarted,
   tools,
   { name: 'Announcements', mq: 910, path: 'https://github.com/quasarframework/quasar/discussions/categories/announcements', external: true },
-  { name: 'Roadmap', mq: 1000, path: 'https://roadmap.quasar.dev', external: true },
-  { name: 'Video Tutorials', mq: 1130, path: '/video-tutorials' },
+  { name: 'Video Tutorials', mq: 1000, path: '/video-tutorials' },
+  { name: 'Roadmap', mq: 1130, path: 'https://roadmap.quasar.dev', external: true },
   { name: 'Brand resources', mq: 1400, path: 'https://github.com/quasarframework/quasar-art', external: true }
 ]
 
@@ -107,9 +107,7 @@ export const moreLinks = [{
   name: 'More',
   children: [
     ...primaryToolbarLinks,
-    {
-      separator: true
-    },
+    { separator: true },
     ...secondaryToolbarLinks,
     socialLinks
   ]
