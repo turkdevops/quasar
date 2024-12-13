@@ -4,7 +4,7 @@
  * Docs: https://quasar.dev/app-extensions/development-guide/install-api
  */
 
-<%= aeCodeFormat === 'esm' ? 'export default' : 'module.exports =' %> function (api) {
+export default function (api) {
   // Quasar compatibility check; you may need
   // hard dependencies, as in a minimum version of the "quasar"
   // package or a minimum version of "@quasar/app-*" CLI

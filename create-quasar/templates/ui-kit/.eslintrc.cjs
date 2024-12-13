@@ -11,7 +11,6 @@ module.exports = {
 
       'packageDescription',
       'aeDescription',
-      'aeCodeFormat',
 
       'umdExportName',
       'componentName',

@@ -4,7 +4,7 @@
   "description": "<%= aeDescription %>",
   "author": "<%= author %>",
   "license": "<%= license %>",
-  "type": "<%= aeCodeFormat === 'esm' ? 'module' : 'commonjs' %>",
+  "type": "module",
   "dependencies": {
     "quasar-ui-<%= name %>": "latest"
   },
