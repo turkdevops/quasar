@@ -416,9 +416,7 @@ export class QuasarConfigFile {
 
           const quasarConf = await this.#computeConfig(quasarConfigFn, isFirst)
 
-          if (quasarConf === void 0) {
-            return
-          }
+          if (quasarConf === void 0) return
 
           if (isFirst === true) {
             isFirst = false

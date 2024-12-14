@@ -56,9 +56,7 @@ async function renderFile ({ sourcePath, targetPath, rawCopy, scope, overwritePr
       ctx
     })
 
-    if (answer.action === 'skip') {
-      return
-    }
+    if (answer.action === 'skip') return
   }
 
   fse.ensureFileSync(targetPath)

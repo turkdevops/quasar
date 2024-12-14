@@ -112,9 +112,7 @@ async function addPlatform (target, appPaths, cacheProxy) {
   await ensureConsistency({ appPaths, cacheProxy })
 
   // if it has the platform
-  if (fse.existsSync(appPaths.resolve.capacitor(target))) {
-    return
-  }
+  if (fse.existsSync(appPaths.resolve.capacitor(target))) return
 
   const { capBin, capVersion } = await cacheProxy.getModule('capCli')
 

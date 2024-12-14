@@ -117,9 +117,7 @@ async function start ({
     }
   }
 
-  if (hasRedirected === true) {
-    return
-  }
+  if (hasRedirected === true) return
   <% } %>
 
   app.use(router)

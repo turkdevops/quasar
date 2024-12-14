@@ -48,14 +48,10 @@ function renderModulesPreload (modules, opts) {
 
   modules.forEach(id => {
     const files = clientManifest[id]
-    if (files === void 0) {
-      return
-    }
+    if (files === void 0) return
 
     files.forEach(file => {
-      if (seen.has(file) === true) {
-        return
-      }
+      if (seen.has(file) === true) return
 
       seen.add(file)
       const filename = basename(file)
