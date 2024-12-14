@@ -20,9 +20,7 @@ const generalAnimations = []
 function extract (file) {
   const name = basename(file).match(/(.*)\.css/)[ 1 ]
 
-  if (cssNames.has(name)) {
-    return
-  }
+  if (cssNames.has(name)) return
 
   copySync(file, join(dist, name + '.css'))
   cssNames.add(name)

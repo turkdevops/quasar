@@ -25,9 +25,7 @@ const typeExports = []
 svgFiles.forEach((file) => {
   const name = defaultNameMapper(file, prefix)
 
-  if (iconNames.has(name)) {
-    return
-  }
+  if (iconNames.has(name)) return
 
   try {
     const { svgDef, typeDef } = extract(file, name)

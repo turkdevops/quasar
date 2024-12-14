@@ -170,9 +170,10 @@ const decoders = {
 function parseDom (name, el, pathsDefinitions) {
   const type = el.nodeName
 
-  if (el.getAttribute === void 0 || el.getAttribute('opacity') === '0') {
-    return
-  }
+  if (
+    el.getAttribute === void 0
+    || el.getAttribute('opacity') === '0'
+  ) return
 
   if (typeExceptions.includes(type) === false) {
     if (decoders[ type ] === void 0) {
