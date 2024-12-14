@@ -1,6 +1,7 @@
 const ExtractLoader = require('mini-css-extract-plugin').loader
 const { merge } = require('webpack-merge')
 const path = require('node:path')
+const { pathToFileURL } = require('node:url')
 
 const quasarCssPaths = [
   path.join('node_modules', 'quasar', 'dist'),
@@ -96,7 +97,12 @@ async function createRule ({ rule, isModules, pref, loader, loaderOptions }) {
 
   // need a fresh copy, otherwise plugins
   // will keep on adding making N duplicates for each one
-  const { default: postCssConfig } = await import(pref.appPaths.postcssConfigFilename + '?t=' + Date.now())
+  const { default: postCssConfig } = await import(
+    pathToFileURL(pref.appPaths.postcssConfigFilename)
+    + '?t='
+    + Date.now()
+  )
+
   let postCssOpts = { sourceMap: pref.sourceMap, ...postCssConfig }
 
   if (pref.rtl) {
