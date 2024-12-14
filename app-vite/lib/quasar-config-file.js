@@ -20,6 +20,7 @@ const urlRegex = /^http(s)?:\/\//i
 import { findClosestOpenPort, localHostList } from './utils/net.js'
 import { isMinimalTerminal } from './utils/is-minimal-terminal.js'
 import { readFileEnv } from './utils/env.js'
+import { raw } from 'express'
 
 const defaultPortMapping = {
   spa: 9000,
@@ -172,6 +173,17 @@ async function onAddress ({ host, port }, mode) {
 
   addressRunning = true
   return { host, port }
+}
+
+// TODO: remove when https://github.com/vuejs/core/issues/12549 is fixed
+function temporaryFixVueFlags (rawDefine) {
+  if (rawDefine.__VUE_PROD_DEVTOOLS__ === false) {
+    delete rawDefine.__VUE_PROD_DEVTOOLS__
+  }
+
+  if (rawDefine.__VUE_PROD_HYDRATION_MISMATCH_DETAILS__ === false) {
+    delete rawDefine.__VUE_PROD_HYDRATION_MISMATCH_DETAILS__
+  }
 }
 
 export class QuasarConfigFile {
@@ -768,6 +780,9 @@ export class QuasarConfigFile {
         vueShim: false
       }
     }, cfg.build)
+
+    // TODO: remove when https://github.com/vuejs/core/issues/12549 is fixed
+    temporaryFixVueFlags(cfg.build.rawDefine)
 
     if (!cfg.build.target.browser) {
       cfg.build.target.browser = [ 'es2022', 'firefox115', 'chrome115', 'safari14' ]
