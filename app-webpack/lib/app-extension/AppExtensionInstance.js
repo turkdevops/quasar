@@ -56,9 +56,7 @@ async function renderFile ({ sourcePath, targetPath, rawCopy, scope, overwritePr
       ctx
     })
 
-    if (answer.action === 'skip') {
-      return
-    }
+    if (answer.action === 'skip') return
   }
 
   fse.ensureFileSync(targetPath)
@@ -225,9 +223,7 @@ module.exports.AppExtensionInstance = class AppExtensionInstance {
         default: false
       } ])
 
-      if (!answer.reinstall) {
-        return
-      }
+      if (!answer.reinstall) return
     }
 
     if (skipPkgInstall !== true) {

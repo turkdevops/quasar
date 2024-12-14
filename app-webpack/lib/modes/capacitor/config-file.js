@@ -93,9 +93,7 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
   }
 
   reset () {
-    if (this.#tamperedFiles.length === 0) {
-      return
-    }
+    if (this.#tamperedFiles.length === 0) return
 
     this.#tamperedFiles.forEach(file => {
       file.content = file.originalContent
@@ -169,10 +167,8 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
     if (capVersion >= 4) {
       const hasPlugin = getPackageJson('@jcesarmobile/ssl-skip', appPaths.capacitorDir) !== void 0
 
-      if (add ? hasPlugin : !hasPlugin) {
-        // nothing to do
-        return
-      }
+      // nothing to do
+      if (add ? hasPlugin : !hasPlugin) return
 
       const fn = `${ add ? '' : 'un' }installPackage`
       const version = sslSkipVersion[ capVersion ] || sslSkipVersion.default
@@ -263,10 +259,8 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
 
     const originalContent = fs.readFileSync(file, 'utf-8')
 
-    if (originalContent.indexOf(content) > -1) {
-      // it's already there
-      return
-    }
+    // it's already there
+    if (originalContent.indexOf(content) > -1) return
 
     const index = originalContent.indexOf(needle)
 
@@ -282,9 +276,7 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
 
   // for Capacitor 1-3
   #removeFromFile (file, content) {
-    if (!file) {
-      return
-    }
+    if (!file) return
 
     const originalContent = fs.readFileSync(file, 'utf-8')
     const index = originalContent.indexOf(content)

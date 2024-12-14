@@ -35,6 +35,7 @@ async function createRule ({ rule, isModules, pref, loader, loaderOptions }) {
   if (pref.isServerBuild === true) {
     rule.use('null-loader')
       .loader('null-loader')
+
     return
   }
 

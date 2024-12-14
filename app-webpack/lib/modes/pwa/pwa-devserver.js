@@ -80,9 +80,7 @@ module.exports.QuasarModeDevserver = class QuasarModeDevserver extends AppDevser
         if (started === true) { return }
 
         // start dev server if there are no errors
-        if (stats.hasErrors() === true) {
-          return
-        }
+        if (stats.hasErrors() === true) return
 
         started = true
         resolve()

@@ -129,9 +129,7 @@ export default ssrContext => {
       }
     }
 
-    if (hasRedirected === true) {
-      return
-    }
+    if (hasRedirected === true) return
     <% } %>
 
     app.use(router)

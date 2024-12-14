@@ -346,10 +346,11 @@ module.exports.QuasarConfigFile = class QuasarConfigFile {
         })
 
         build.onEnd(async result => {
-          if (isFirst === false && this.#isWatching === false) {
+          if (
             // not ready yet; watch() has not been issued yet
-            return
-          }
+            isFirst === false
+            && this.#isWatching === false
+          ) return
 
           if (result.errors.length !== 0) {
             fse.removeSync(tempFile)
@@ -406,9 +407,7 @@ module.exports.QuasarConfigFile = class QuasarConfigFile {
 
           const quasarConf = await this.#computeConfig(quasarConfigFn, isFirst)
 
-          if (quasarConf === void 0) {
-            return
-          }
+          if (quasarConf === void 0) return
 
           if (isFirst === true) {
             isFirst = false

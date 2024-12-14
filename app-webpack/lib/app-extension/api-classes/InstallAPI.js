@@ -137,9 +137,7 @@ module.exports.InstallAPI = class InstallAPI extends BaseAPI {
    * @param {object|string} extPkg - Object to extend with or relative path to a JSON file
    */
   extendPackageJson (extPkg) {
-    if (!extPkg) {
-      return
-    }
+    if (!extPkg) return
 
     if (typeof extPkg === 'string') {
       const dir = getCallerPath()
@@ -170,9 +168,10 @@ module.exports.InstallAPI = class InstallAPI extends BaseAPI {
       }
     }
 
-    if (Object(extPkg) !== extPkg || Object.keys(extPkg).length === 0) {
-      return
-    }
+    if (
+      Object(extPkg) !== extPkg
+      || Object.keys(extPkg).length === 0
+    ) return
 
     const pkg = merge({}, this.ctx.pkg.appPkg, extPkg)
 

@@ -93,9 +93,7 @@ function addPlatform (appPaths, target) {
   ensureConsistency({ appPaths })
 
   // if it has the platform
-  if (fs.existsSync(appPaths.resolve.cordova(`platforms/${ target }`))) {
-    return
-  }
+  if (fs.existsSync(appPaths.resolve.cordova(`platforms/${ target }`))) return
 
   log(`Adding Cordova platform "${ target }"`)
   spawnSync(

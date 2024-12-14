@@ -114,9 +114,7 @@ function addPlatform (target, appPaths, cacheProxy) {
   ensureConsistency({ appPaths, cacheProxy })
 
   // if it has the platform
-  if (fs.existsSync(appPaths.resolve.capacitor(target))) {
-    return
-  }
+  if (fs.existsSync(appPaths.resolve.capacitor(target))) return
 
   const { capBin, capVersion } = cacheProxy.getModule('capCli')
 

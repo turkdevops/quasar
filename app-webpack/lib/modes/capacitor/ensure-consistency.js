@@ -16,9 +16,7 @@ function ensureWWW ({ appPaths, forced }) {
 module.exports.ensureWWW = ensureWWW
 
 function ensureDeps ({ appPaths, cacheProxy }) {
-  if (existsSync(appPaths.resolve.capacitor('node_modules'))) {
-    return
-  }
+  if (existsSync(appPaths.resolve.capacitor('node_modules'))) return
 
   const nodePackager = cacheProxy.getModule('nodePackager')
   nodePackager.install({

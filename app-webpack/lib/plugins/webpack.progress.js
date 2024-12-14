@@ -55,9 +55,7 @@ const barString = Array.apply(null, { length: barLength })
   })
 
 function printBars () {
-  if (progressLog.isActive !== true) {
-    return
-  }
+  if (progressLog.isActive !== true) return
 
   const prefixLen = compilations.length - 1
 
@@ -91,9 +89,10 @@ const renderBars = throttle(printBars, 200)
  */
 
 function printStatus () {
-  if (isDev === true && isCompilationIdle() === false) {
-    return
-  }
+  if (
+    isDev === true
+    && isCompilationIdle() === false
+  ) return
 
   const entriesWithErrors = compilations.filter(entry => entry.errors !== null)
   if (entriesWithErrors.length > 0) {
@@ -110,9 +109,10 @@ function printStatus () {
     return
   }
 
-  if (isDev !== true && isCompilationIdle() === false) {
-    return
-  }
+  if (
+    isDev !== true
+    && isCompilationIdle() === false
+  ) return
 
   const entriesWithWarnings = compilations.filter(entry => entry.warnings !== null)
   if (entriesWithWarnings.length > 0) {
