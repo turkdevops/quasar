@@ -594,10 +594,7 @@ export default createComponent({
         )
       }
 
-      if (child.length === 0) {
-        return
-      }
-
+      if (child.length === 0) return
       return h('div', { class: topClass }, child)
     }
 
@@ -726,14 +723,10 @@ export default createComponent({
     })
 
     function getBottomDiv () {
-      if (props.hideBottom === true) {
-        return
-      }
+      if (props.hideBottom === true) return
 
       if (nothingToDisplay.value === true) {
-        if (props.hideNoData === true) {
-          return
-        }
+        if (props.hideNoData === true) return
 
         const message = props.loading === true
           ? props.loadingLabel || $q.lang.table.loading

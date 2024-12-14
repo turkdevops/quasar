@@ -434,9 +434,7 @@ export default createComponent({
     })
 
     const rangeView = computed(() => {
-      if (editRange.value === null) {
-        return
-      }
+      if (editRange.value === null) return
 
       const { init, initHash, final, finalHash } = editRange.value
 
@@ -447,9 +445,10 @@ export default createComponent({
       const fromHash = getMonthHash(from)
       const toHash = getMonthHash(to)
 
-      if (fromHash !== viewMonthHash.value && toHash !== viewMonthHash.value) {
-        return
-      }
+      if (
+        fromHash !== viewMonthHash.value
+        && toHash !== viewMonthHash.value
+      ) return
 
       const view = {}
 
@@ -1043,9 +1042,7 @@ export default createComponent({
     }
 
     function removeFromModel (date) {
-      if (props.noUnset === true) {
-        return
-      }
+      if (props.noUnset === true) return
 
       let model = null
 

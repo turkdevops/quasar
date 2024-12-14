@@ -178,6 +178,7 @@ export default function () {
         setTimeout(() => {
           forcedPanelTransition = false
         })
+
         return
       }
 
@@ -227,9 +228,7 @@ export default function () {
   }
 
   function getPanelContent () {
-    if (panels.length === 0) {
-      return
-    }
+    if (panels.length === 0) return
 
     return props.animated === true
       ? [ h(Transition, { name: panelTransition.value }, getPanelContentChild) ]
