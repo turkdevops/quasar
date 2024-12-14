@@ -20,7 +20,6 @@ const urlRegex = /^http(s)?:\/\//i
 import { findClosestOpenPort, localHostList } from './utils/net.js'
 import { isMinimalTerminal } from './utils/is-minimal-terminal.js'
 import { readFileEnv } from './utils/env.js'
-import { raw } from 'express'
 
 const defaultPortMapping = {
   spa: 9000,
@@ -356,10 +355,11 @@ export class QuasarConfigFile {
         })
 
         build.onEnd(async result => {
-          if (isFirst === false && this.#isWatching === false) {
-            // not ready yet; watch() has not been issued yet
-            return
-          }
+          // not ready yet; watch() has not been issued yet
+          if (
+            isFirst === false
+            && this.#isWatching === false
+          ) return
 
           if (result.errors.length !== 0) {
             fse.removeSync(tempFile)
