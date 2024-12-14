@@ -106,7 +106,7 @@ function fetchQuery (val, onResult, onError) {
   clearTimeout(fetchTimer)
 
   fetchTimer = setTimeout(() => {
-    if (localRequestId !== requestId) { return }
+    if (localRequestId !== requestId) return
 
     const xhr = new XMLHttpRequest()
     const data = JSON.stringify({

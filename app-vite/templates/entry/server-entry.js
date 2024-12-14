@@ -192,7 +192,7 @@ export default ssrContext => {
         Promise.resolve()
       )
       .then(() => {
-        if (hasRedirected === true) { return }
+        if (hasRedirected === true) return
 
         <% if (metaConf.hasStore && ssr.manualStoreSsrContextInjection !== true) { %>ssrContext.state = unref(store.state)<% } %>
 

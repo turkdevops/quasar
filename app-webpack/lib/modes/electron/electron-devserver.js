@@ -71,7 +71,7 @@ module.exports.QuasarModeDevserver = class QuasarModeDevserver extends AppDevser
       const compiler = webpack(webpackConf)
 
       compiler.hooks.done.tap('done-compiling', stats => {
-        if (started === true) { return }
+        if (started === true) return
 
         // start dev server if there are no errors
         if (stats.hasErrors() === true) return
