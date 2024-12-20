@@ -16,7 +16,8 @@ export function readFileEnv ({ ctx, quasarConf }) {
 
   const opts = {
     envFolder: quasarConf.build.envFolder,
-    envFiles: quasarConf.build.envFiles
+    envFiles: quasarConf.build.envFiles,
+    envFilter: quasarConf.build.envFilter
   }
 
   const configHash = encodeForDiff(opts)
@@ -28,6 +29,10 @@ export function readFileEnv ({ ctx, quasarConf }) {
       quasarMode: ctx.modeName,
       buildType: ctx.dev ? 'dev' : 'prod'
     })
+
+    if (opts.envFilter !== void 0) {
+      result.fileEnv = opts.envFilter(result.fileEnv) || {}
+    }
 
     cacheProxy.setRuntime(readFileEnvCacheKey, {
       configHash,
