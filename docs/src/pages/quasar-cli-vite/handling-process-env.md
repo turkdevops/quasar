@@ -171,7 +171,7 @@ build: {
    * through the env files. This does not account also for the definitions
    * assigned directly to quasar.config > build > env prop.
    *
-   * Requires @quasar/app-vite v2.0.3
+   * Requires @quasar/app-vite v2.0.3+
    */
   envFilter?:
     (env: { [index: string]: string | boolean | undefined | null })
@@ -183,6 +183,7 @@ Remember that you can filter out unwanted keys, or even change values for keys b
 
 ```js /quasar.config file
 build: {
+  // @quasar/app-vite v2.0.3+
   envFilter (originalEnv) {
     const newEnv = {}
     for (const key in originalEnv) {

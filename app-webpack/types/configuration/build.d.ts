@@ -293,6 +293,12 @@ interface QuasarStaticBuildConfiguration {
    * @example ['.env.somefile', '../.env.someotherfile']
    */
   envFiles?: string[];
+  /**
+   * Filter the env variables that are exposed to the client
+   * through the env files. This does not account also for the definitions
+   * assigned directly to quasar.config > build > env prop.
+   */
+  envFilter?: (env: { [index: string]: string | boolean | undefined | null }) => { [index: string]: string | boolean | undefined | null };
 
   /**
    * Gzip the distributables.
