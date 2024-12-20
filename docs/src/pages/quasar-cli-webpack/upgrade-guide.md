@@ -1978,9 +1978,50 @@ You can also configure the files above to be picked up from a different folder o
 
 ```js /quasar.config file
 build: {
-  envFolder: './' // absolute or relative path to root project folder
-  envFiles: [
-    // Path strings to your custom files --- absolute or relative path to root project folder
-  ]
+  /**
+   * Folder where Quasar CLI should look for .env* files.
+   * Can be an absolute path or a relative path to project root directory.
+   *
+   * @default project root directory
+   */
+  envFolder?: string;
+
+  /**
+   * Additional .env* files to be loaded.
+   * Each entry can be an absolute path or a relative path to quasar.config > build > envFolder.
+   *
+   * @example ['.env.somefile', '../.env.someotherfile']
+   */
+  envFiles?: string[];
+
+  /**
+   * Filter the env variables that are exposed to the client
+   * through the env files. This does not account also for the definitions
+   * assigned directly to quasar.config > build > env prop.
+   *
+   * Requires @quasar/app-webpack v4.0.3+
+   */
+  envFilter?:
+    (env: { [index: string]: string | boolean | undefined | null })
+      => { [index: string]: string | boolean | undefined | null };
+}
+```
+
+Remember that you can filter out unwanted keys, or even change values for keys by using `build > envFilter`:
+
+```js /quasar.config file
+build: {
+  // @quasar/app-webpack v4.0.3+
+  envFilter (originalEnv) {
+    const newEnv = {}
+    for (const key in originalEnv) {
+      if (/* ...decide if it goes in or not... */) {
+        newEnv[ key ] = originalEnv[ key ]
+      }
+    }
+
+    // remember to return your processed env
+    return newEnv
+  }
 }
 ```
