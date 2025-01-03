@@ -23,10 +23,10 @@ module.exports.QuasarModeBuilder = class QuasarModeBuilder extends AppBuilder {
     copyBexAssets(this.quasarConf)
 
     this.printSummary(this.quasarConf.build.distDir)
-    this.#bundlePackage(this.quasarConf.build.distDir)
+    await this.#bundlePackage(this.quasarConf.build.distDir)
   }
 
-  #bundlePackage (dir) {
+  async #bundlePackage (dir) {
     const done = progress('Bundling in progress...')
     const zipName = `Packaged.${ this.ctx.pkg.appPkg.name }.zip`
     const file = join(dir, zipName)
@@ -38,7 +38,14 @@ module.exports.QuasarModeBuilder = class QuasarModeBuilder extends AppBuilder {
 
     archive.pipe(output)
     archive.directory(dir, false, entryData => ((entryData.name !== zipName) ? entryData : false))
-    archive.finalize()
+
+    await archive.finalize()
+
+    // wait a bit more, otherwise archiver
+    // doesn't finishes correctly
+    await new Promise(resolve => {
+      setTimeout(resolve, 1)
+    })
 
     done(`Bundle has been generated at: ${ file }`)
   }
