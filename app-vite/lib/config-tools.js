@@ -143,7 +143,9 @@ export async function createViteConfig (quasarConf, { compileId }) {
     }),
 
     resolve: {
-      alias: build.alias
+      alias: {
+        ...build.alias
+      }
     },
 
     css: {
@@ -308,7 +310,9 @@ export function createBrowserEsbuildConfig (quasarConf) {
     bundle: true,
     sourcemap: quasarConf.metaConf.debugging === true ? 'inline' : false,
     minify: quasarConf.build.minify !== false,
-    alias: quasarConf.build.alias,
+    alias: {
+      ...quasarConf.build.alias
+    },
     define: getBuildSystemDefine({
       buildEnv: quasarConf.build.env,
       buildRawDefine: quasarConf.build.rawDefine,
