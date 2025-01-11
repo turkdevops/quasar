@@ -143,10 +143,6 @@ const quasarPwaConfig = {
     cfg.entryPoints = [ quasarConf.sourceFiles.pwaServiceWorker ]
     cfg.outfile = appPaths.resolve.entry('compiled-custom-sw.js')
 
-    if (typeof quasarConf.pwa.extendPWACustomSWConf === 'function') {
-      quasarConf.pwa.extendPWACustomSWConf(cfg)
-    }
-
     return extendEsbuildConfig(cfg, quasarConf.pwa, ctx, 'extendPWACustomSWConf')
   }
 }
