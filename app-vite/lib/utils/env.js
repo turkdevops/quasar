@@ -119,8 +119,7 @@ function getFileEnvResult ({
     return {}
   }
 
-  const rawFileEnv = {}
-  dotEnvExpand({ processEnv: rawFileEnv, parsed: env })
+  const { parsed: rawFileEnv } = dotEnvExpand({ parsed: env })
 
   return {
     fileEnv: getFileEnv(rawFileEnv),
