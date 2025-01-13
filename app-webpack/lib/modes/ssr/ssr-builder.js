@@ -20,7 +20,10 @@ module.exports.QuasarModeBuilder = class QuasarModeBuilder extends AppBuilder {
     await this.#writePackageJson()
 
     // also update pwa-builder.js when changing here
-    if (this.quasarConf.pwa.workboxMode === 'InjectManifest') {
+    if (
+      this.quasarConf.ssr.pwa === true
+      && this.quasarConf.pwa.workboxMode === 'InjectManifest'
+    ) {
       const esbuildConfig = await quasarSsrConfig.customSw(this.quasarConf)
       await this.buildWithEsbuild('InjectManifest Custom SW', esbuildConfig)
     }
