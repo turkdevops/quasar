@@ -129,7 +129,13 @@ function getFileEnvResult ({
   }
 }
 
-const validKeyRE = /^[a-zA-Z][a-zA-Z0-9_]+/
+const validKeyRE = /^[a-zA-Z_$][a-zA-Z0-9_$]+/
+
+/**
+ * Filter out keys that cannot be used in JS
+ * as process.env.[key]
+ * Examples: ProgramFiles(x86), BASH_FUNC_which%%
+ */
 function getFileEnv (env) {
   const validKeys = Object.keys(env).filter(key => validKeyRE.test(key))
   return validKeys.reduce((acc, key) => {
