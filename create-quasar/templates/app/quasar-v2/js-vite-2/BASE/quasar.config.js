@@ -13,7 +13,7 @@ export default defineConfig((<% if (preset.i18n) { %>ctx<% } else { %>/* ctx */<
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [<% if (preset.i18n) { %>
-      'i18n'<% } %><% if (preset.axios) { %><%= preset.i18n ? ',' : '' %>
+      'i18n'<% } %><% if (preset.axios) { %><% if (preset.i18n) { %>,<% } %>
       'axios'<% } %>
     ],
 
