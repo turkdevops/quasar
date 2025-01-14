@@ -703,7 +703,7 @@ export default createComponent({
     ))
 
     watch(() => props.modelValue, v => {
-      if (lastEmitValue === v) {
+      if (lastEmitValue === JSON.stringify(v)) {
         lastEmitValue = 0
       }
       else {
@@ -731,6 +731,10 @@ export default createComponent({
       updateValue(innerMask.value, val, 'locale')
       innerLocale.value = val
     })
+
+    function setLastValue (v) {
+      lastEmitValue = JSON.stringify(v)
+    }
 
     function setToday () {
       const { year, month, day } = today.value
@@ -958,9 +962,9 @@ export default createComponent({
         ? val[ 0 ]
         : val
 
-      lastEmitValue = value
-
       const { reason, details } = getEmitParams(action, date)
+
+      setLastValue(value)
       emit('update:modelValue', value, reason, details)
     }
 
@@ -981,9 +985,9 @@ export default createComponent({
         date.day = Math.min(Math.max(1, date.day), maxDay)
 
         const value = encodeEntry(date)
-        lastEmitValue = value
-
         const { details } = getEmitParams('', date)
+
+        setLastValue(value)
         emit('update:modelValue', value, reason, details)
       })
     }
@@ -1080,7 +1084,10 @@ export default createComponent({
             : entry.dateHash !== null
         })
 
-      emit('update:modelValue', (props.multiple === true ? model : model[ 0 ]) || null, reason)
+      const value = (props.multiple === true ? model : model[ 0 ]) || null
+
+      setLastValue(value)
+      emit('update:modelValue', value, reason)
     }
 
     function getHeader () {
