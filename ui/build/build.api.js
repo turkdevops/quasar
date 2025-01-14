@@ -1,4 +1,5 @@
 import { join, basename } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { globSync } from 'tinyglobby'
 import { merge } from 'webpack-merge'
 import fse from 'fs-extra'
@@ -936,7 +937,10 @@ function fillAPI (apiType, list, encodeFn) {
       let RuntimeComponent
 
       try {
-        const comp = await import(componentPath)
+        const comp = await import(
+          pathToFileURL(componentPath)
+        )
+
         RuntimeComponent = comp.default
       }
       catch (err) {
