@@ -83,7 +83,7 @@
     "cssnano": "^7.0.6",
     "diff": "^5.2.0",
     "esbuild": "^0.24.0",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "eslint-config-quasar": "workspace:*",
     "fs-extra": "^11.2.0",
     "kolorist": "^1.8.0",

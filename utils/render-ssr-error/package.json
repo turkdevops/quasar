@@ -41,7 +41,7 @@
     "@quasar/extras": "workspace:*",
     "@quasar/vite-plugin": "workspace:^",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "eslint-config-quasar": "workspace:*",
     "fs-extra": "^11.2.0",
     "postcss": "^8.4.45",
