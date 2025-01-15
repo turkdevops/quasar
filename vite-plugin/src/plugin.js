@@ -97,7 +97,8 @@ function getScriptTransformsPlugin (opts) {
     configResolved (resolvedConfig) {
       if (opts.devTreeshaking === false && resolvedConfig.mode !== 'production') {
         useTreeshaking = false
-      } else {
+      }
+      else {
         loadQuasarImportMap()
       }
     },

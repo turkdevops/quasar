@@ -4,10 +4,8 @@ import { join } from 'node:path'
 import { quasarPath } from './quasar-path.js'
 
 let quasarImportMap
-export function loadQuasarImportMap() {
-  if (quasarImportMap !== void 0) {
-    return
-  }
+export function loadQuasarImportMap () {
+  if (quasarImportMap !== void 0) return
 
   try {
     quasarImportMap = JSON.parse(
@@ -16,7 +14,8 @@ export function loadQuasarImportMap() {
         'utf-8'
       )
     )
-  } catch (error) {
+  }
+  catch (error) {
     throw new Error('Failed to load Quasar import map', { cause: error })
   }
 }
