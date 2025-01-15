@@ -948,6 +948,7 @@ export default createComponent({
           if (
             props.onRowClick !== void 0
             || props.onRowDblclick !== void 0
+            || props.onRowContextmenu !== void 0
           ) {
             data.class[ 0 ] += ' cursor-pointer'
 
@@ -960,6 +961,12 @@ export default createComponent({
             if (props.onRowDblclick !== void 0) {
               data.onDblclick = evt => {
                 emit('RowDblclick', evt, scope.row, scope.pageIndex)
+              }
+            }
+
+            if (props.onRowContextmenu !== void 0) {
+              data.onContextmenu = evt => {
+                emit('rowContextmenu', evt, scope.row, scope.pageIndex)
               }
             }
           }
