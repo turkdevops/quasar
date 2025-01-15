@@ -33,7 +33,7 @@ export async function createProject({ scriptType, appEngine, packageManager }: C
     author: 'Quasar Team (info@quasar.dev)',
 
     // The defaults
-    sfcStyle: 'composition',
+    sfcStyle: 'composition-setup',
     css: 'scss',
     ...(appEngine === 'vite-1' || appEngine === 'webpack-3'
       ? {
