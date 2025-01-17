@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import { merge } from 'webpack-merge'
+import { stringifyJSON } from 'confbox'
 
 import { AppBuilder } from '../../app-builder.js'
 import { quasarSsrConfig } from './ssr-config.js'
@@ -9,7 +10,6 @@ import { getFixedDeps } from '../../utils/get-fixed-deps.js'
 import { getProdSsrTemplateFn, transformProdSsrPwaOfflineHtml } from '../../utils/html-template.js'
 
 import { injectPwaManifest, buildPwaServiceWorker } from '../pwa/utils.js'
-import { stringifyJSON } from 'confbox'
 
 export class QuasarModeBuilder extends AppBuilder {
   async build () {

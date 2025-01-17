@@ -1,4 +1,5 @@
 const { merge } = require('webpack-merge')
+const { stringifyJSON } = require('confbox')
 
 const { AppBuilder } = require('../../app-builder.js')
 const { quasarSsrConfig } = require('./ssr-config.js')
@@ -92,7 +93,7 @@ module.exports.QuasarModeBuilder = class QuasarModeBuilder extends AppBuilder {
       this.quasarConf.ssr.extendPackageJson(pkg)
     }
 
-    this.writeFile('package.json', JSON.stringify(pkg, null, 2))
+    this.writeFile('package.json', stringifyJSON(pkg, { indent: 2 }))
   }
 
   async #writeRenderTemplate () {

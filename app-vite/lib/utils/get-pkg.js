@@ -1,8 +1,8 @@
 import { readFileSync, statSync } from 'node:fs'
+import { parseJSON } from 'confbox'
 
 import { warning } from './logger.js'
 import { getPackageJson } from '../utils/get-package-json.js'
-import { parseJSON } from 'confbox'
 
 export function getPkg (appPaths) {
   const { appDir, cliDir } = appPaths

@@ -1,6 +1,7 @@
 const fs = require('node:fs')
 const { basename, dirname, join } = require('node:path')
 const { globSync } = require('tinyglobby')
+const { stringifyJSON, parseJSON } = require('confbox')
 
 const { log, warn } = require('../../utils/logger.js')
 const { ensureConsistency } = require('./ensure-consistency.js')
@@ -74,8 +75,9 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
 
     this.#tamperedFiles = []
 
+    // TODO: support other formats: .js and .ts
     const capJsonPath = appPaths.resolve.capacitor('capacitor.config.json')
-    const capJson = JSON.parse(
+    const capJson = parseJSON(
       fs.readFileSync(capJsonPath, 'utf-8')
     )
 
@@ -85,7 +87,7 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
       path: capJsonPath,
       name: 'capacitor.config.json',
       content: this.#updateCapJson(quasarConf, capJson, capVersion, target),
-      originalContent: JSON.stringify(capJson, null, 2)
+      originalContent: stringifyJSON(capJson)
     })
 
     this.#save()
@@ -136,7 +138,7 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
       }
     }
 
-    return JSON.stringify(capJson, null, 2)
+    return stringifyJSON(capJson)
   }
 
   #updateCapPkg (quasarConf) {
@@ -146,7 +148,7 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
     } = this.#ctx
 
     const capPkgPath = appPaths.resolve.capacitor('package.json')
-    const capPkg = JSON.parse(
+    const capPkg = parseJSON(
       fs.readFileSync(capPkgPath, 'utf-8')
     )
 
@@ -157,7 +159,7 @@ module.exports.CapacitorConfigFile = class CapacitorConfigFile {
       author: appPkg.author
     })
 
-    fs.writeFileSync(capPkgPath, JSON.stringify(capPkg, null, 2), 'utf-8')
+    fs.writeFileSync(capPkgPath, stringifyJSON(capPkg), 'utf-8')
   }
 
   #updateSSL (quasarConf, target, capVersion) {

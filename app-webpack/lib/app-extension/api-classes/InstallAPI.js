@@ -2,6 +2,7 @@ const fs = require('fs-extra')
 const path = require('node:path')
 const { merge } = require('webpack-merge')
 const semver = require('semver')
+const { stringifyJSON, parseJSON } = require('confbox')
 
 const { warn, fatal } = require('../../utils/logger.js')
 const { getPackageJson } = require('../../utils/get-package-json.js')
@@ -177,7 +178,7 @@ module.exports.InstallAPI = class InstallAPI extends BaseAPI {
 
     fs.writeFileSync(
       this.resolve.app('package.json'),
-      JSON.stringify(pkg, null, 2),
+      stringifyJSON(pkg),
       'utf-8'
     )
 
@@ -208,12 +209,15 @@ module.exports.InstallAPI = class InstallAPI extends BaseAPI {
       //  which usually means we are dealing with an extended JSON flavour,
       //  for example JSON with comments or JSON5.
       // Notable examples are TS 'tsconfig.json' or VSCode 'settings.json'
+      // TODO: use parseJSONC/stringifyJSONC from confbox
       try {
-        const data = merge({}, fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, 'utf-8')) : {}, newData)
+        const existingData = fs.existsSync(filePath) ? parseJSON(fs.readFileSync(filePath, 'utf-8')) : {}
+        const data = merge({}, existingData, newData)
 
         fs.writeFileSync(
           this.resolve.app(file),
-          JSON.stringify(data, null, 2),
+          // if file exists, preserve indentation, otherwise use 2 spaces
+          stringifyJSON(data, { indent: Object.keys(existingData).length > 0 ? undefined : 2 }),
           'utf-8'
         )
       }
