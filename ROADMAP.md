@@ -40,6 +40,7 @@ We are updating this section constantly in order to keep you up to date with our
 
 ### Q3-Q4 2025
 * CLI SSG mode ([#2299](https://github.com/quasarframework/quasar/issues/2299)) ([community support](https://github.com/freddy38510/quasar-app-extension-ssg))
+* Release of a new major version of `@quasar/app-vite` with Vite 7. Replace esbuild with rolldown for all Quasar modes compilation threads.
 
 ## Archive
 
