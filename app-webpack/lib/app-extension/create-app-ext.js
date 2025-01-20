@@ -22,6 +22,8 @@ function readJson (file) {
 }
 
 function getAppExtJson ({ file, json, onListUpdate }) {
+  const fileExists = Object.keys(json).length > 0
+
   function save () {
     writeFileSync(
       file,
