@@ -67,7 +67,7 @@ You may ask yourself why we need to export a function. This is actually optional
 //  - Good place for import statements,
 //  - No access to router, Pinia instance, ...
 
-export default async defineBoot(({ app, router, store }) => {
+export default defineBoot(async ({ app, router, store }) => {
   // Code here has access to the Object param above, connecting
   // with other parts of your app;
 
